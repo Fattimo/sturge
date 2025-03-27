@@ -8,6 +8,9 @@
 4. https://nominal.io/
 5. https://www.wealthsimple.com/en-ca
 6. https://www.churchonthelivingedge.com/events
+  
+8. https://reality-demo.nucleus.church/calendar
+9. https://www.nucleus.church/examples
 
 Core elements:
 
