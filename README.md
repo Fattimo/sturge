@@ -30,11 +30,12 @@ Overview:
 
 Phase 1:
 1. Home page + common elements
-  1. Brand kit -- font package, color palette, logos, etc.
-  2. Nav bar
-  3. Footer
+    1. Brand kit -- font package, color palette, logos, etc.
+    2. Nav bar
+    3. Footer
 4. Calendar/upcoming events
 5. Contact Us
+6. About us
 
 Phase 2:
 1. Media corner
@@ -83,6 +84,10 @@ Contact Us
   * Email
   * Phone number
   * What to ask?
+
+About us:
+
+* easy page with rich text content
 
 ### Phase 2
 
@@ -161,3 +166,8 @@ Eng sizes:
 * 210 billable hours
 
 40$ hour rate = $8400
+
+Open questions
+
+1. Maintenance cost?
+2. 
