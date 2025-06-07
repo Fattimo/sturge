@@ -1,4 +1,7 @@
 import type { PageServerLoad } from './$types';
+import { dev } from '$app/environment';
+
+export const csr = dev;
 
 export const load: PageServerLoad = async ({ fetch }) => {
 	const url = `https://www.random.org/integers/?num=3&min=1&max=100&col=1&base=10&format=plain&rnd=new`;
