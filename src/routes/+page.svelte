@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { m } from '$lib/paraglide/messages';
 	import Counter from './Counter.svelte';
 </script>
 
@@ -9,7 +10,7 @@
 
 <section>
 	<h1>
-		to your new<br />SvelteKit app
+		{m.welcome_message()}
 	</h1>
 
 	<h2>
