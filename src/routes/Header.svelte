@@ -1,18 +1,19 @@
 <script lang="ts">
 	import { page } from '$app/state';
+	import { makeRelativeLink } from '$lib/utils';
 </script>
 
 <header>
 	<nav>
 		<ul>
 			<li aria-current={page.url.pathname === '/' ? 'page' : undefined}>
-				<a href="/">Home</a>
+				<a href={makeRelativeLink('/')}>Home</a>
 			</li>
 			<li aria-current={page.url.pathname === '/about' ? 'page' : undefined}>
-				<a href="/about">About</a>
+				<a href={makeRelativeLink('/about')}>About</a>
 			</li>
 			<li aria-current={page.url.pathname.startsWith('/paraglide') ? 'page' : undefined}>
-				<a href="/paraglide">i18n demo</a>
+				<a href={makeRelativeLink('/paraglide')}>i18n demo</a>
 			</li>
 		</ul>
 	</nav>
