@@ -15,6 +15,9 @@
 			<li aria-current={page.url.pathname.startsWith('/paraglide') ? 'page' : undefined}>
 				<a href={makeRelativeLink('/paraglide')}>i18n demo</a>
 			</li>
+			<li aria-current={page.url.pathname.startsWith('/counter') ? 'page' : undefined}>
+				<a href={makeRelativeLink('/counter')}>interactive</a>
+			</li>
 		</ul>
 	</nav>
 </header>
