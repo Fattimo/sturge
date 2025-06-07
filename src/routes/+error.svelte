@@ -1,6 +1,5 @@
-<svelte:head>
-	<title>Error</title>
-	<meta name="description" content="Error" />
-</svelte:head>
+<script lang="ts">
+	import { page } from '$app/state';
+</script>
 
-<section>error</section>
+<h1>{page.error?.message || 'Some error'}</h1>
