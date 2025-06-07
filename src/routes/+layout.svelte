@@ -1,7 +1,8 @@
 <script lang="ts">
 	import Header from './Header.svelte';
 	import '../app.css';
-
+	import logo from '$lib/images/svelte-logo.svg';
+	import github from '$lib/images/github.svg';
 	let { children } = $props();
 </script>
 
@@ -16,6 +17,19 @@
 		<p>
 			visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to learn about SvelteKit
 		</p>
+		<div class="corner">
+			<a href="https://svelte.dev/docs/kit">
+				<img src={logo} alt="SvelteKit" />
+			</a>
+			to svelte docs
+		</div>
+
+		<div class="corner">
+			<a href="https://github.com/sveltejs/kit">
+				<img src={github} alt="GitHub" />
+			</a>
+			to svelte kit gh
+		</div>
 	</footer>
 </div>
 
@@ -39,19 +53,27 @@
 
 	footer {
 		display: flex;
-		flex-direction: column;
 		justify-content: center;
 		align-items: center;
 		padding: 12px;
 	}
 
-	footer a {
-		font-weight: bold;
-	}
+	.corner {
+		height: 3em;
+		display: flex;
 
-	@media (min-width: 480px) {
-		footer {
-			padding: 12px 0;
+		& img {
+			width: 2em;
+			height: 2em;
+			object-fit: contain;
+		}
+
+		& a {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 100%;
+			height: 100%;
 		}
 	}
 </style>
