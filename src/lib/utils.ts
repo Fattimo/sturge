@@ -9,7 +9,7 @@ const makeRelativeLink = (link: string) => {
 };
 
 export const processLink = (link: string, locale?: 'en' | 'jp') => {
-	const relativePath = link;
+	const relativePath = link === base ? '/' : link;
 	const currentLocale = getLocale();
 	const nextLocale = locale || currentLocale;
 
