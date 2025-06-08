@@ -9,7 +9,7 @@ const makeRelativeLink = (link: string) => {
 };
 
 export const processLink = (link: string, locale?: 'en' | 'jp') => {
-	const relativePath = makeRelativeLink(link);
+	const relativePath = link;
 	const currentLocale = getLocale();
 	const nextLocale = locale || currentLocale;
 
@@ -17,7 +17,8 @@ export const processLink = (link: string, locale?: 'en' | 'jp') => {
 		locale: nextLocale
 	});
 
-	if (nextLocale === 'en') return deLocalizeHref(localized);
+	let finalLink = localized;
+	if (nextLocale === 'en') finalLink = deLocalizeHref(localized);
 
-	return localized;
+	return makeRelativeLink(finalLink);
 };
