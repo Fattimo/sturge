@@ -19,6 +19,7 @@
 				<a href={processLink('/counter')}>interactive</a>
 			</li>
 		</ul>
+		{page.url.pathname}
 		<a href={processLink(page.url.pathname, 'en')} data-sveltekit-reload>English</a>
 		<a href={processLink(page.url.pathname, 'jp')} data-sveltekit-reload>Japanese</a>
 	</nav>

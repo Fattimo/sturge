@@ -1,8 +1,6 @@
 <script lang="ts">
-	import { page } from '$app/state';
 	import logo from '$lib/images/svelte-logo.svg';
 	import github from '$lib/images/github.svg';
-	import { locales, localizeHref } from '$lib/paraglide/runtime';
 	import type { LayoutProps } from './$types';
 
 	import Header from './Header.svelte';
@@ -11,12 +9,6 @@
 
 	const { children }: LayoutProps = $props();
 </script>
-
-<div style="display:none">
-	{#each locales as locale}
-		<a href={localizeHref(page.url.pathname, { locale })}>{locale}</a>
-	{/each}
-</div>
 
 <div class="app">
 	<Header />
