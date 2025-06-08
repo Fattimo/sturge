@@ -26,17 +26,17 @@ export default defineConfig({
 						]
 					: []),
 				{
-					pattern: `${BASE_PATH}{/:path(.*)}?`,
+					pattern: `${BASE_PATH}/:path(.*)?`,
 					localized: [
-						['jp', `${BASE_PATH}/jp{/:path(.*)}?`],
-						['en', `${BASE_PATH}{/:path(.*)}?`]
+						['jp', `${BASE_PATH}/jp/:path(.*)?`],
+						['en', `${BASE_PATH}/:path(.*)?`]
 					]
 				},
 				{
-					pattern: '{/:path(.*)}?',
+					pattern: '/:path(.*)?',
 					localized: [
-						['jp', '/jp{/:path(.*)}?'],
-						['en', '{/:path(.*)}?']
+						['jp', '/jp/:path(.*)?'],
+						['en', '/:path(.*)?']
 					]
 				}
 			]
