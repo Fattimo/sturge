@@ -7,9 +7,7 @@ const config = {
 		adapter: adapter(),
 		paths: {
 			base:
-				process.argv.includes('dev') || !process.env.REPO_NAME
-					? `/sturge`
-					: `/${process.env.REPO_NAME}`
+				process.argv.includes('dev') || !process.env.REPO_NAME ? `` : `/${process.env.REPO_NAME}`
 		}
 	}
 };

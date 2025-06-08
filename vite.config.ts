@@ -4,7 +4,7 @@ import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
 const BASE_PATH =
-	process.argv.includes('dev') || !process.env.REPO_NAME ? '/sturge' : `/${process.env.REPO_NAME}`;
+	process.argv.includes('dev') || !process.env.REPO_NAME ? '' : `/${process.env.REPO_NAME}`;
 
 export default defineConfig({
 	plugins: [
