@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { m } from '$lib/paraglide/messages';
 	import Counter from '../Counter.svelte';
 </script>
 
@@ -9,7 +10,7 @@
 
 <section>
 	<p>This page has js</p>
-
+	<p>{m.hello_world({ name: 'interactive page' })}</p>
 	<Counter />
 </section>
 

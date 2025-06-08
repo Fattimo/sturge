@@ -1,24 +1,26 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import { makeRelativeLink } from '$lib/utils';
+	import { processLink } from '$lib/utils';
 </script>
 
 <header>
 	<nav>
 		<ul>
 			<li aria-current={page.url.pathname === '/' ? 'page' : undefined}>
-				<a href={makeRelativeLink('/')}>Home</a>
+				<a href={processLink('/')}>Home</a>
 			</li>
 			<li aria-current={page.url.pathname === '/about' ? 'page' : undefined}>
-				<a href={makeRelativeLink('/about')}>About</a>
+				<a href={processLink('/about')}>About</a>
 			</li>
 			<li aria-current={page.url.pathname.startsWith('/paraglide') ? 'page' : undefined}>
-				<a href={makeRelativeLink('/paraglide')}>i18n demo</a>
+				<a href={processLink('/paraglide')}>i18n demo</a>
 			</li>
 			<li aria-current={page.url.pathname.startsWith('/counter') ? 'page' : undefined}>
-				<a href={makeRelativeLink('/counter')}>interactive</a>
+				<a href={processLink('/counter')}>interactive</a>
 			</li>
 		</ul>
+		<a href={processLink(page.url.pathname, 'en')} data-sveltekit-reload>English</a>
+		<a href={processLink(page.url.pathname, 'jp')} data-sveltekit-reload>Japanese</a>
 	</nav>
 </header>
 

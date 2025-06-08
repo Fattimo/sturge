@@ -5,6 +5,7 @@
 
 <h1>{m.hello_world({ name: 'SvelteKit User' })}</h1>
 <div>
+	these buttons are non function in a csr context
 	<button onclick={() => setLocale('en')}>en</button>
 	<button onclick={() => setLocale('jp')}>jp</button>
 </div>
