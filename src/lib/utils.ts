@@ -11,6 +11,7 @@ export const processLink = (link: string, locale?: 'en' | 'jp') => {
 		locale: nextLocale
 	});
 
-	if (!localized.startsWith(BASE_PATH)) return BASE_PATH + localized;
-	return localized;
+	let finalLink = localized;
+	if (!localized.startsWith(BASE_PATH)) finalLink = BASE_PATH + localized;
+	return finalLink.length > 1 && finalLink.endsWith('/') ? finalLink.slice(0, -1) : finalLink;
 };
