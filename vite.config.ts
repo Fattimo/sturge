@@ -1,4 +1,3 @@
-import type { Locale } from '$lib/paraglide/runtime';
 import { paraglideVitePlugin } from '@inlang/paraglide-js';
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
@@ -14,17 +13,6 @@ export default defineConfig({
 			outdir: './src/lib/paraglide',
 			strategy: ['url', 'cookie', 'baseLocale'],
 			urlPatterns: [
-				...(BASE_PATH
-					? [
-							{
-								pattern: `${BASE_PATH}`,
-								localized: [
-									['jp', `${BASE_PATH}/jp`],
-									['en', `${BASE_PATH}`]
-								] as [Locale, string][]
-							}
-						]
-					: []),
 				{
 					pattern: `${BASE_PATH}/:path(.*)?`,
 					localized: [
