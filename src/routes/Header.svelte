@@ -7,62 +7,84 @@
 	<nav>
 		<ul>
 			<li aria-current={page.url.pathname === '/' ? 'page' : undefined}>
-				<a href={processLink('/')}>Home</a>
+				<a href={processLink('/')}>logo</a>
+			</li>
+			<li aria-current={page.url.pathname === '/' ? 'page' : undefined}>
+				<a href={processLink('/')}>Worship</a>
 			</li>
 			<li aria-current={page.url.pathname === '/about' ? 'page' : undefined}>
-				<a href={processLink('/about')}>About</a>
+				<a href={processLink('/about')}>Ministries</a>
 			</li>
 			<li aria-current={page.url.pathname.startsWith('/paraglide') ? 'page' : undefined}>
-				<a href={processLink('/paraglide')}>i18n demo</a>
+				<a href={processLink('/paraglide')}>About</a>
 			</li>
 			<li aria-current={page.url.pathname.startsWith('/counter') ? 'page' : undefined}>
-				<a href={processLink('/counter')}>interactive</a>
+				<a href={processLink('/counter')}>Contact Us</a>
+			</li>
+			<li>
+				<a href={processLink(page.url.pathname, 'en')} data-sveltekit-reload>English</a>
+			</li>
+			<li>
+				<a href={processLink(page.url.pathname, 'jp')} data-sveltekit-reload>Japanese</a>
+			</li>
+			<li>
+				<a href="google.com" data-sveltekit-reload>Give</a>
 			</li>
 		</ul>
-		{page.url.pathname}
-		<a href={processLink(page.url.pathname, 'en')} data-sveltekit-reload>English</a>
-		<a href={processLink(page.url.pathname, 'jp')} data-sveltekit-reload>Japanese</a>
 	</nav>
 </header>
 
 <style>
 	header {
-		display: flex;
-		justify-content: center;
+		height: 68px;
 	}
 
 	nav {
-		display: flex;
-		justify-content: center;
+		display: contents;
 	}
 
 	ul {
-		position: relative;
 		padding: 0;
 		margin: 0;
-		height: 3em;
+
+		width: 100%;
+		height: 100%;
+
 		display: flex;
-		justify-content: center;
 		align-items: center;
 		list-style: none;
 		background-size: contain;
+
+		> li:first-child {
+			margin-right: auto;
+		}
+
+		> li:nth-child(2) {
+			color: var(--deep-purple);
+		}
+		> li:nth-child(3) {
+			color: var(--moss);
+		}
+		> li:nth-child(4) {
+			color: var(--slate-blue);
+		}
+		> li:nth-child(5) {
+			color: var(--pink);
+		}
+		> li:nth-child(6) {
+			color: var(--orange);
+		}
+		> li:nth-child(7) {
+			color: var(--brown);
+		}
+		> li:nth-child(8) {
+			color: var(--sand);
+		}
 	}
 
 	li {
 		position: relative;
 		height: 100%;
-	}
-
-	li[aria-current='page']::before {
-		--size: 6px;
-		content: '';
-		width: 0;
-		height: 0;
-		position: absolute;
-		top: 0;
-		left: calc(50% - var(--size));
-		border: var(--size) solid transparent;
-		border-top: var(--size) solid cornflowerblue;
 	}
 
 	nav a {

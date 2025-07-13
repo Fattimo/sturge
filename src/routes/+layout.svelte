@@ -1,6 +1,5 @@
 <script lang="ts">
-	import logo from '$lib/images/svelte-logo.svg';
-	import github from '$lib/images/github.svg';
+	// import github from '$lib/images/github.svg';
 
 	import type { LayoutProps } from './$types';
 
@@ -19,22 +18,33 @@
 	</main>
 
 	<footer>
-		<p>
-			visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to learn about SvelteKit
-		</p>
-		<div class="corner">
-			<a href="https://svelte.dev/docs/kit">
-				<img src={logo} alt="SvelteKit" />
-			</a>
-			to svelte docs
-		</div>
-
-		<div class="corner">
-			<a href="https://github.com/sveltejs/kit">
-				<img src={github} alt="GitHub" />
-			</a>
-			to svelte kit gh
-		</div>
+		<div class="red-spacer"></div>
+		<section class="content-area">
+			<div>
+				Stay connected with out <b>Weekly eNewsletter</b>
+				<input />
+				<input />
+				<input />
+				<button>Submit</button>
+			</div>
+			<div class="center">
+				<b>Join us for Sunday worship</b>
+				<span>9:00am Japanese service</span>
+				<span>10:45am English service</span>
+				<div>logo here, Sturge</div>
+			</div>
+			<div>
+				<div>
+					Contact:
+					<a href="">650.344.6803</a>
+				</div>
+				<div>Visit: 25 S. Humboldt Street San Mateo, CA 94401</div>
+				<div>
+					<b>Follow:</b>
+					youtuve, instagram, faacebook
+				</div>
+			</div>
+		</section>
 	</footer>
 </div>
 
@@ -49,36 +59,35 @@
 		flex: 1;
 		display: flex;
 		flex-direction: column;
-		padding: 1rem;
 		width: 100%;
-		max-width: 64rem;
 		margin: 0 auto;
 		box-sizing: border-box;
+		max-width: 100vw;
+		overflow-x: hidden;
+		overflow-y: auto;
 	}
 
 	footer {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		padding: 12px;
-	}
+		background-color: var(--deep-purple);
+		color: white;
 
-	.corner {
-		height: 3em;
-		display: flex;
-
-		& img {
-			width: 2em;
-			height: 2em;
-			object-fit: contain;
+		.red-spacer {
+			background-color: var(--red);
+			height: 16px;
+			width: 100%;
 		}
 
-		& a {
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			width: 100%;
-			height: 100%;
+		.content-area {
+			padding: 16px 48px;
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
+			gap: 20px;
+
+			.center {
+				display: flex;
+				flex-direction: column;
+				text-align: center;
+			}
 		}
 	}
 </style>
