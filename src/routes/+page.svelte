@@ -11,7 +11,7 @@
 </svelte:head>
 
 <section>
-	<div class="banner">Save the date: XXXX-XXX-XXX<a href="google.com">Learn more</a></div>
+	<div class="banner">Save the date: XXXX-XXX-XXX<a href="https://google.com">Learn more</a></div>
 	<section class="hero">
 		<div class="hero-text">
 			<h1>worship. connect. grow.</h1>
@@ -23,20 +23,20 @@
 	</section>
 	<section class="photo-nodes">
 		<PhotoNode
-			href="google.com"
+			href="https://google.com"
 			title="worship with us"
 			description="Join us Sundays at 9:00am for Nichigo service, or 10:45am for English service"
 			imgSrc={worshipImage}
 		/>
 		<PhotoNode
-			href="google.com"
+			href="https://google.com"
 			title="grow with us"
 			description="Join us we serve our local and global communities"
 			imgSrc={worshipImage}
 			imgSide="right"
 		/>
 		<PhotoNode
-			href="google.com"
+			href="https://google.com"
 			title="connect with us"
 			description="Come fellowship with us and celebrate our faith, cultures, history, and food!"
 			imgSrc={worshipImage}

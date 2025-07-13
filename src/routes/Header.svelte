@@ -28,7 +28,7 @@
 				<a href={processLink(page.url.pathname, 'jp')} data-sveltekit-reload>Japanese</a>
 			</li>
 			<li>
-				<a href="google.com" data-sveltekit-reload>Give</a>
+				<a href="https://google.com" data-sveltekit-reload>Give</a>
 			</li>
 		</ul>
 	</nav>
