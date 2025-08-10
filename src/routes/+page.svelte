@@ -5,6 +5,12 @@
 
 	const dummyEvents = ['event 1', 'event 2', 'event 3'];
 	const dummyVideos = ['event 1', 'event 2', 'event 3'];
+	// TODO:
+	// functional form
+	// functional youtube
+	// functional events
+	// functional dialog hooked into key event
+	// assets
 </script>
 
 <svelte:head>
@@ -63,28 +69,32 @@
 		</ul>
 	</section>
 	<section class="sermons">
-		<h1>Recent Sermons</h1>
-		<ul>
-			{#each dummyVideos as event}
-				<li>
-					<img src={worshipImage} alt={event} />
-					{event}
-				</li>
-			{/each}
-		</ul>
+		<div>
+			<h1>Recent Sermons</h1>
+			<ul>
+				{#each dummyVideos as event}
+					<li>
+						<img src={worshipImage} alt={event} />
+						{event}
+					</li>
+				{/each}
+			</ul>
+		</div>
 	</section>
 	<section class="contact-us">
-		<div>
-			<h1>contact us</h1>
-			<p>We'd love to hear from you!</p>
+		<div class="contents">
+			<div>
+				<h1>contact us</h1>
+				<p>We'd love to hear from you!</p>
+			</div>
+			<form>
+				<input placeholder="Name*" />
+				<input placeholder="Email*" />
+				<input placeholder="Phone*" />
+				<textarea placeholder="Questions"></textarea>
+				<button>Submit</button>
+			</form>
 		</div>
-		<form>
-			<input placeholder="Name*" />
-			<input placeholder="Email*" />
-			<input placeholder="Phone*" />
-			<textarea placeholder="Questions"></textarea>
-			<button>Submit</button>
-		</form>
 	</section>
 </section>
 
@@ -230,10 +240,14 @@
 
 	.sermons {
 		background: var(--khaki);
-		padding: 1rem;
+		> div {
+			margin: 0 auto;
+			padding: 1rem;
+			max-width: 1000px;
 
-		@media (min-width: 700px) {
-			padding: 2rem;
+			@media (min-width: 700px) {
+				padding: 2rem;
+			}
 		}
 
 		h1 {
@@ -275,27 +289,30 @@
 
 	.contact-us {
 		background: var(--gray);
-		padding: 1rem;
-		color: white;
 
-		display: grid;
-		align-items: center;
-		gap: 0 3rem;
+		.contents {
+			margin: 0 auto;
+			padding: 1rem;
+			max-width: 1000px;
+			color: white;
 
-		max-width: 1000px;
+			display: grid;
+			align-items: center;
+			gap: 0 3rem;
 
-		@media (min-width: 700px) {
-			padding: 2rem;
-			grid-template-columns: 1fr auto;
+			@media (min-width: 700px) {
+				padding: 2rem;
+				grid-template-columns: 1fr auto;
 
-			> div:first-child {
-				grid-column: 2 / 3;
-			}
+				> div:first-child {
+					grid-column: 2 / 3;
+				}
 
-			> form {
-				margin-top: 0;
-				grid-column: 1 / 2;
-				grid-row: 1 / 2;
+				> form {
+					margin-top: 0;
+					grid-column: 1 / 2;
+					grid-row: 1 / 2;
+				}
 			}
 		}
 

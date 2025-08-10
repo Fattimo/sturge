@@ -21,7 +21,7 @@
 		<div class="red-spacer"></div>
 		<section class="content-area">
 			<div class="contact-form">
-				Stay connected with out <b>Weekly eNewsletter</b>
+				Stay connected with our <b>Weekly eNewsletter</b>
 				<input />
 				<input />
 				<input />
@@ -35,12 +35,22 @@
 			<div class="logo">logo here, Sturge</div>
 			<div class="contact">
 				Contact:
-				<a href="">650.344.6803</a>
+				<a href="tel:+6503446803">650.344.6803</a>
+				<a href="mailto:admin@sturge.org">admin@sturge.org</a>
 			</div>
-			<div class="visit">Visit: 25 S. Humboldt Street San Mateo, CA 94401</div>
+			<div class="visit">
+				Visit:
+				<a
+					href="https://maps.app.goo.gl/xCPBSYawYzBjYnGz6"
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					25 S. Humboldt Street San Mateo, CA 94401
+				</a>
+			</div>
 			<div class="follow">
 				<b>Follow:</b>
-				youtuve, instagram, faacebook
+				youtube, instagram, facebook
 			</div>
 		</section>
 		<div class="copyright">© 2025 Sturge Presbyterian Church. All rights reserved</div>
@@ -80,6 +90,8 @@
 
 		.content-area {
 			padding: 1em;
+			max-width: 1000px;
+			margin: 0 auto;
 
 			@media (min-width: 700px) {
 				padding: 1em 2em;
@@ -94,9 +106,10 @@
 				'visit visit'
 				'follow follow'
 				'contact-form contact-form';
+			grid-template-columns: 1fr 1fr;
 
 			@media (min-width: 700px) {
-				gap: 1.25em;
+				gap: 2rem;
 				grid-template-areas:
 					'contact-form join contact'
 					'contact-form join contact'
@@ -104,10 +117,20 @@
 					'contact-form logo visit'
 					'contact-form logo follow'
 					'contact-form logo follow';
+				grid-template-columns: 1fr 1fr 1fr;
+				grid-template-rows: repeat(6, 1fr);
 			}
 
 			.contact-form {
 				grid-area: contact-form;
+				display: flex;
+				flex-direction: column;
+				gap: 0.5rem;
+				font-weight: 350;
+
+				> b {
+					font-size: 1.25rem;
+				}
 			}
 
 			.logo {
@@ -126,12 +149,31 @@
 				grid-area: visit;
 			}
 
+			.contact,
+			.follow,
+			.visit {
+				display: flex;
+				flex-direction: column;
+				gap: 0.5rem;
+				font-weight: 600;
+				text-transform: uppercase;
+
+				> a {
+					color: white;
+					font-weight: normal;
+					text-transform: none;
+				}
+			}
+
 			.join {
 				grid-area: join;
 
 				display: flex;
 				flex-direction: column;
 				text-align: center;
+
+				height: 100%;
+				justify-content: flex-end;
 			}
 		}
 	}

@@ -42,6 +42,9 @@
 <style>
 	header {
 		height: 68px;
+		position: sticky;
+		top: 0;
+		z-index: 1;
 	}
 
 	nav {
