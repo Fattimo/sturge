@@ -1,6 +1,9 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import { processLink } from '$lib/utils';
+	import PillButton from './PillButton.svelte';
+
+	const PHASE_2 = false;
 </script>
 
 <header>
@@ -9,26 +12,28 @@
 			<li aria-current={page.url.pathname === '/' ? 'page' : undefined}>
 				<a href={processLink('/')}>logo</a>
 			</li>
-			<li aria-current={page.url.pathname === '/' ? 'page' : undefined}>
-				<a href={processLink('/')}>Worship</a>
-			</li>
-			<li aria-current={page.url.pathname === '/about' ? 'page' : undefined}>
-				<a href={processLink('/about')}>Ministries</a>
-			</li>
-			<li aria-current={page.url.pathname.startsWith('/paraglide') ? 'page' : undefined}>
-				<a href={processLink('/paraglide')}>About</a>
-			</li>
-			<li aria-current={page.url.pathname.startsWith('/counter') ? 'page' : undefined}>
-				<a href={processLink('/counter')}>Contact Us</a>
-			</li>
+			{#if PHASE_2}
+				<li aria-current={page.url.pathname === '/' ? 'page' : undefined}>
+					<a href={processLink('/')}>Worship</a>
+				</li>
+				<li aria-current={page.url.pathname === '/about' ? 'page' : undefined}>
+					<a href={processLink('/about')}>Ministries</a>
+				</li>
+				<li aria-current={page.url.pathname.startsWith('/paraglide') ? 'page' : undefined}>
+					<a href={processLink('/paraglide')}>About</a>
+				</li>
+				<li aria-current={page.url.pathname.startsWith('/counter') ? 'page' : undefined}>
+					<a href={processLink('/counter')}>Contact Us</a>
+				</li>
+				<li>
+					<a href={processLink(page.url.pathname, 'en')} data-sveltekit-reload>English</a>
+				</li>
+				<li>
+					<a href={processLink(page.url.pathname, 'jp')} data-sveltekit-reload>Japanese</a>
+				</li>
+			{/if}
 			<li>
-				<a href={processLink(page.url.pathname, 'en')} data-sveltekit-reload>English</a>
-			</li>
-			<li>
-				<a href={processLink(page.url.pathname, 'jp')} data-sveltekit-reload>Japanese</a>
-			</li>
-			<li>
-				<a href="https://google.com" data-sveltekit-reload>Give</a>
+				<PillButton href="https://secure.myvanco.com/L-ZWJ1">Give</PillButton>
 			</li>
 		</ul>
 	</nav>
@@ -44,11 +49,17 @@
 	}
 
 	ul {
-		padding: 0;
-		margin: 0;
+		--margin-x: 1rem;
 
-		width: 100%;
+		@media (min-width: 700px) {
+			--margin-x: 2rem;
+		}
+
+		padding: 0;
+		margin: 0 var(--margin-x);
+
 		height: 100%;
+		width: calc(100% - 2 * var(--margin-x));
 
 		display: flex;
 		align-items: center;
@@ -60,7 +71,8 @@
 		}
 
 		> li:nth-child(2) {
-			color: var(--deep-purple);
+			color: var(--sand);
+			/* color: var(--deep-purple); */
 		}
 		> li:nth-child(3) {
 			color: var(--moss);
@@ -85,6 +97,9 @@
 	li {
 		position: relative;
 		height: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 	}
 
 	nav a {

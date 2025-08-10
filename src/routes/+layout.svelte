@@ -20,31 +20,30 @@
 	<footer>
 		<div class="red-spacer"></div>
 		<section class="content-area">
-			<div>
+			<div class="contact-form">
 				Stay connected with out <b>Weekly eNewsletter</b>
 				<input />
 				<input />
 				<input />
 				<button>Submit</button>
 			</div>
-			<div class="center">
+			<div class="join">
 				<b>Join us for Sunday worship</b>
 				<span>9:00am Japanese service</span>
 				<span>10:45am English service</span>
-				<div>logo here, Sturge</div>
 			</div>
-			<div>
-				<div>
-					Contact:
-					<a href="">650.344.6803</a>
-				</div>
-				<div>Visit: 25 S. Humboldt Street San Mateo, CA 94401</div>
-				<div>
-					<b>Follow:</b>
-					youtuve, instagram, faacebook
-				</div>
+			<div class="logo">logo here, Sturge</div>
+			<div class="contact">
+				Contact:
+				<a href="">650.344.6803</a>
+			</div>
+			<div class="visit">Visit: 25 S. Humboldt Street San Mateo, CA 94401</div>
+			<div class="follow">
+				<b>Follow:</b>
+				youtuve, instagram, faacebook
 			</div>
 		</section>
+		<div class="copyright">© 2025 Sturge Presbyterian Church. All rights reserved</div>
 	</footer>
 </div>
 
@@ -70,6 +69,8 @@
 	footer {
 		background-color: var(--deep-purple);
 		color: white;
+		max-width: 100vw;
+		overflow: hidden;
 
 		.red-spacer {
 			background-color: var(--red);
@@ -78,16 +79,69 @@
 		}
 
 		.content-area {
-			padding: 16px 48px;
-			display: grid;
-			grid-template-columns: repeat(3, 1fr);
-			gap: 20px;
+			padding: 1em;
 
-			.center {
+			@media (min-width: 700px) {
+				padding: 1em 2em;
+			}
+
+			display: grid;
+			gap: 1em;
+
+			grid-template-areas:
+				'logo join'
+				'contact contact'
+				'visit visit'
+				'follow follow'
+				'contact-form contact-form';
+
+			@media (min-width: 700px) {
+				gap: 1.25em;
+				grid-template-areas:
+					'contact-form join contact'
+					'contact-form join contact'
+					'contact-form join visit'
+					'contact-form logo visit'
+					'contact-form logo follow'
+					'contact-form logo follow';
+			}
+
+			.contact-form {
+				grid-area: contact-form;
+			}
+
+			.logo {
+				grid-area: logo;
+			}
+
+			.contact {
+				grid-area: contact;
+			}
+
+			.follow {
+				grid-area: follow;
+			}
+
+			.visit {
+				grid-area: visit;
+			}
+
+			.join {
+				grid-area: join;
+
 				display: flex;
 				flex-direction: column;
 				text-align: center;
 			}
+		}
+	}
+
+	.copyright {
+		padding: 1em;
+
+		@media (min-width: 700px) {
+			padding: 1em 2em;
+			font-size: 0.5rem;
 		}
 	}
 </style>
