@@ -7,10 +7,10 @@
 	--font-mono: 'Fira Mono', monospace;
 	font-family: var(--font-body);
 
-	--deep-purple: #35003e;
-	--red: #bc2426;
+	--deep-purple: oklch(0.22 0.146 331.22);
+	--red: oklch(0.3423 0.146 31.72);
 	--moss: #a29739;
-	--slate-blue: #4e637d;
+	--slate-blue: oklch(0.3423 0.146 219.69);
 	--pink: #b12849;
 	--orange: #e85e27;
 	--brown: #5d4850;
