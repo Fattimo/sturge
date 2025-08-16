@@ -6,6 +6,7 @@
 	import Header from './Header.svelte';
 
 	import '../app.css';
+	import FooterLogo from './FooterLogo.svelte';
 
 	const { children }: LayoutProps = $props();
 </script>
@@ -22,9 +23,8 @@
 		<section class="content-area">
 			<div class="contact-form">
 				Stay connected with our <b>Weekly eNewsletter</b>
-				<input />
-				<input />
-				<input />
+				<input name="name" placeholder="name" />
+				<input name="email" placeholder="email" />
 				<button>Submit</button>
 			</div>
 			<div class="join">
@@ -32,7 +32,7 @@
 				<span>9:00am Japanese service</span>
 				<span>10:45am English service</span>
 			</div>
-			<div class="logo">logo here, Sturge</div>
+			<div class="logo"><FooterLogo /></div>
 			<div class="contact">
 				Contact:
 				<a href="tel:+6503446803">650.344.6803</a>
@@ -98,18 +98,19 @@
 			}
 
 			display: grid;
-			gap: 1em;
+			gap: 0 1em;
 
 			grid-template-areas:
-				'logo join'
-				'contact contact'
-				'visit visit'
-				'follow follow'
-				'contact-form contact-form';
-			grid-template-columns: 1fr 1fr;
+				'join'
+				'contact'
+				'visit '
+				'follow'
+				'contact-form'
+				'logo';
+			grid-template-columns: 1fr;
 
 			@media (min-width: 700px) {
-				gap: 2rem;
+				gap: 0 2rem;
 				grid-template-areas:
 					'contact-form join contact'
 					'contact-form join contact'
@@ -118,7 +119,7 @@
 					'contact-form logo follow'
 					'contact-form logo follow';
 				grid-template-columns: 1fr 1fr 1fr;
-				grid-template-rows: repeat(6, 1fr);
+				grid-template-rows: repeat(6, fit-content);
 			}
 
 			.contact-form {
@@ -131,10 +132,33 @@
 				> b {
 					font-size: 1.25rem;
 				}
+
+				> input {
+					background: transparent;
+					border: 1px solid white;
+					color: white;
+					padding: 0.5rem 0.75rem;
+					border-radius: 10px;
+
+					&::placeholder {
+						color: lightgray;
+					}
+				}
+
+				> button {
+					background-color: var(--orange);
+					color: white;
+					text-transform: uppercase;
+					padding: 0.5rem 0.75rem;
+					border-radius: 10px;
+				}
 			}
 
 			.logo {
 				grid-area: logo;
+				fill: white;
+				margin-top: 2rem;
+				place-self: center;
 			}
 
 			.contact {
@@ -143,6 +167,7 @@
 
 			.follow {
 				grid-area: follow;
+				visibility: hidden;
 			}
 
 			.visit {
@@ -157,11 +182,19 @@
 				gap: 0.5rem;
 				font-weight: 600;
 				text-transform: uppercase;
+				margin-top: 1rem;
+
+				text-align: center;
+
+				@media (min-width: 700px) {
+					text-align: left;
+				}
 
 				> a {
 					color: white;
-					font-weight: normal;
+					font-weight: 350;
 					text-transform: none;
+					font-size: 0.75rem;
 				}
 			}
 
@@ -174,12 +207,25 @@
 
 				height: 100%;
 				justify-content: flex-end;
+
+				span {
+					font-weight: 350;
+				}
+
+				b {
+					margin-bottom: 1rem;
+					font-size: 1.25rem;
+					font-weight: bold;
+				}
 			}
 		}
 	}
 
 	.copyright {
 		padding: 1em;
+		width: 1000px;
+		max-width: 100vw;
+		margin: 0 auto;
 
 		@media (min-width: 700px) {
 			padding: 1em 2em;

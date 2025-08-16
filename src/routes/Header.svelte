@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import { processLink } from '$lib/utils';
+	import HeaderLogo from './HeaderLogo.svelte';
 	import PillButton from './PillButton.svelte';
 
 	const PHASE_2 = false;
@@ -10,7 +11,7 @@
 	<nav>
 		<ul>
 			<li aria-current={page.url.pathname === '/' ? 'page' : undefined}>
-				<a href={processLink('/')}>logo</a>
+				<a href={processLink('/')}><HeaderLogo /></a>
 			</li>
 			{#if PHASE_2}
 				<li aria-current={page.url.pathname === '/' ? 'page' : undefined}>
