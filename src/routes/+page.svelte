@@ -3,15 +3,18 @@
 	import worshipImage from '$lib/images/worship-image.jpg';
 	import PillButton from './PillButton.svelte';
 	import { processLink } from '$lib/utils';
+	import type { PageProps } from './$types';
 
-	const dummyEvents = ['event 1', 'event 2', 'event 3'];
 	const dummyVideos = ['event 1', 'event 2', 'event 3'];
 	// TODO:
-	// functional form
 	// functional youtube
-	// functional events
 	// functional dialog hooked into key event
+	// cron job
 	// assets
+
+	const { data }: PageProps = $props();
+	const { events } = data;
+	const firstEvent = events[0];
 </script>
 
 <svelte:head>
@@ -20,9 +23,16 @@
 </svelte:head>
 
 <section>
-	<div class="banner">
-		Save the date: XXXX-XXX-XXX<PillButton onclick={() => {}}>Learn more</PillButton>
-	</div>
+	{#if firstEvent}
+		<div class="banner">
+			Save the date: {new Date(firstEvent.start).toLocaleDateString(undefined, {
+				year: 'numeric',
+				month: 'long',
+				day: 'numeric'
+			})}: {firstEvent.summary}
+			<PillButton onclick={() => {}}>Learn more</PillButton>
+		</div>
+	{/if}
 	<section class="hero">
 		<div class="hero-text">
 			<h1>connect. grow. worship</h1>
@@ -60,11 +70,24 @@
 	<section class="upcoming-events">
 		<h1>Upcoming Events</h1>
 		<ul>
-			{#each dummyEvents as event}
+			{#each events as event}
 				<li>
-					<img src={worshipImage} alt={event} />
-					{new Date().toLocaleDateString()}
-					{event}
+					<img
+						src={event.attachments[0].fileId
+							? `https://drive.google.com/thumbnail?id=${event.attachments[0].fileId}`
+							: worshipImage}
+						alt={event.summary}
+					/>
+					<span class="date">
+						{new Date(event.start).toLocaleDateString(undefined, {
+							year: 'numeric',
+							month: 'long',
+							day: 'numeric'
+						})}
+					</span>
+					<span class="event-title">
+						{event.summary}
+					</span>
 				</li>
 			{/each}
 		</ul>
@@ -235,6 +258,18 @@
 			li {
 				display: flex;
 				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+
+				.date {
+					text-transform: uppercase;
+					font-size: 0.8rem;
+					margin-top: 0.75rem;
+				}
+
+				.event-title {
+					font-weight: 600;
+				}
 			}
 
 			img {
