@@ -130,7 +130,7 @@
 					'contact-form logo visit'
 					'contact-form logo follow'
 					'contact-form logo follow';
-				grid-template-columns: 1fr 1fr fit-content;
+				grid-template-columns: 1fr max-content 1fr;
 				grid-template-rows: repeat(6, fit-content);
 			}
 
