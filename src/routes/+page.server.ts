@@ -3,6 +3,7 @@ import { GOOGLE_API_KEY } from '$env/static/private';
 
 const PUBLIC_CALENDAR_ID =
 	'884f0388322a4de78749e56c73dbcc24fdc81a4c8755c999532750f50bd5c5d0@group.calendar.google.com';
+const STURGE_CHANNEL_ID = 'UCAAKEN_t0O0DA2OToKlpljg';
 
 export const prerender = true;
 
@@ -19,7 +20,8 @@ type GcalEvent = {
 
 export async function load() {
 	try {
-		const response = await fetch(
+		//gcal
+		const gcalResponse = await fetch(
 			`https://www.googleapis.com/calendar/v3/calendars/${PUBLIC_CALENDAR_ID}/events?` +
 				new URLSearchParams({
 					key: GOOGLE_API_KEY,
@@ -30,13 +32,13 @@ export async function load() {
 				})
 		);
 
-		if (!response.ok) {
+		if (!gcalResponse.ok) {
 			throw new Error('Failed to fetch events');
 		}
 
-		const data = await response.json();
+		const gcalData = await gcalResponse.json();
 
-		const events: GcalEvent[] = (data.items || []).map(
+		const events: GcalEvent[] = (gcalData.items || []).map(
 			(
 				// trust google lol
 				// eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -51,13 +53,29 @@ export async function load() {
 			})
 		);
 
+		// youtube
+		const youtubeResponse = await fetch(
+			`https://www.googleapis.com/youtube/v3/search?` +
+				`key=${GOOGLE_API_KEY}&channelId=${STURGE_CHANNEL_ID}&part=snippet,id&order=date&maxResults=1`
+		);
+		if (!youtubeResponse.ok) {
+			throw new Error('Failed to fetch events');
+		}
+		const youtubeData = await youtubeResponse.json();
+		const firstVideo = youtubeData.items[0];
+
 		return {
-			events
+			events,
+			firstVideo: {
+				id: firstVideo.id.videoId as string,
+				description: firstVideo.snippet.description as string
+			}
 		};
 	} catch (error) {
 		console.error('Error fetching calendar events:', error);
 		return {
-			events: [] as GcalEvent[]
+			events: [] as GcalEvent[],
+			firstVideo: null
 		};
 	}
 }

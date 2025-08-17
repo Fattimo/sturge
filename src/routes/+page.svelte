@@ -5,15 +5,13 @@
 	import { processLink } from '$lib/utils';
 	import type { PageProps } from './$types';
 
-	const dummyVideos = ['event 1', 'event 2', 'event 3'];
 	// TODO:
-	// functional youtube
 	// functional dialog hooked into key event
 	// cron job
 	// assets
 
 	const { data }: PageProps = $props();
-	const { events } = data;
+	const { events, firstVideo } = data;
 	const firstEvent = events[0];
 </script>
 
@@ -94,15 +92,23 @@
 	</section>
 	<section class="sermons">
 		<div>
-			<h1>Recent Sermons</h1>
-			<ul>
-				{#each dummyVideos as event}
-					<li>
-						<img src={worshipImage} alt={event} />
-						{event}
-					</li>
-				{/each}
-			</ul>
+			<div class="sermon-header">
+				<h1>Recent Sermon</h1>
+				<PillButton href="https://www.youtube.com/@sturgechurch">All sermons</PillButton>
+			</div>
+			<div class="sermon-video">
+				<iframe
+					width="560"
+					height="315"
+					src={`https://www.youtube.com/embed/${firstVideo?.id || 'Hbz8Slq6N5s'}`}
+					title="YouTube video player"
+					frameborder="0"
+					allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+					allowfullscreen
+				>
+				</iframe>
+				<span>{firstVideo?.description || 'Random video!'}</span>
+			</div>
 		</div>
 	</section>
 	<section class="contact-us">
@@ -282,6 +288,20 @@
 
 	.sermons {
 		background: var(--khaki);
+
+		.sermon-header {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			margin-bottom: 1.5rem;
+		}
+
+		.sermon-video {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+
 		> div {
 			margin: 0 auto;
 			padding: 1rem;
@@ -297,35 +317,6 @@
 			font-size: 1.5rem;
 			text-transform: lowercase;
 			color: var(--deep-purple);
-
-			margin-bottom: 1.5rem;
-		}
-
-		ul {
-			padding: 0;
-			margin: 0;
-			list-style: none;
-			display: grid;
-			justify-content: center;
-
-			grid-template-columns: repeat(2, 1fr);
-			gap: 1.5rem;
-
-			@media (min-width: 700px) {
-				gap: 3rem;
-				grid-template-columns: repeat(4, 1fr);
-			}
-
-			li {
-				display: flex;
-				flex-direction: column;
-			}
-
-			img {
-				width: 100%;
-				aspect-ratio: 16 / 9;
-				object-fit: cover;
-			}
 		}
 	}
 
