@@ -1,7 +1,7 @@
 import { getLocale, localizeHref } from './paraglide/runtime';
+import { dev } from '$app/environment';
 
-const BASE_PATH =
-	process.argv.includes('dev') || !process.env.REPO_NAME ? '' : `/${process.env.REPO_NAME}`;
+const BASE_PATH = dev || !process.env.REPO_NAME ? '' : `/${process.env.REPO_NAME}`;
 
 export const processLink = (link: string, locale?: 'en' | 'jp') => {
 	const currentLocale = getLocale();
