@@ -7,6 +7,7 @@
 
 	import '../app.css';
 	import FooterLogo from './FooterLogo.svelte';
+	import { processLink } from '$lib/utils';
 
 	const { children }: LayoutProps = $props();
 </script>
@@ -22,10 +23,21 @@
 		<div class="red-spacer"></div>
 		<section class="content-area">
 			<div class="contact-form">
-				Stay connected with our <b>Weekly eNewsletter</b>
-				<input name="name" placeholder="name" />
-				<input name="email" placeholder="email" />
-				<button>Submit</button>
+				<div id="newsletter-success">
+					<div>Stay connected with our</div>
+					<b>Weekly eNewsletter</b>
+				</div>
+				<form action="https://api.web3forms.com/submit" method="POST">
+					<input type="hidden" name="access_key" value="b7687713-373a-47bc-aead-650d3987eb01" />
+					<input type="hidden" name="subject" value="[sturge.com] Sturge Newsletter Request" />
+					<input type="hidden" name="redirect" value={processLink('#newsletter-success')} />
+
+					<input name="name" placeholder="name" required />
+					<input name="email" placeholder="email" required type="email" />
+
+					<button type="submit">Submit</button>
+				</form>
+				<div class="success">request received!</div>
 			</div>
 			<div class="join">
 				<b>Join us for Sunday worship</b>
@@ -124,16 +136,21 @@
 
 			.contact-form {
 				grid-area: contact-form;
-				display: flex;
-				flex-direction: column;
-				gap: 0.5rem;
+
 				font-weight: 350;
 
-				> b {
+				b {
 					font-size: 1.25rem;
 				}
 
-				> input {
+				form {
+					display: flex;
+					flex-direction: column;
+					gap: 0.5rem;
+					margin-top: 1rem;
+				}
+
+				input {
 					background: transparent;
 					border: 1px solid white;
 					color: white;
@@ -145,12 +162,23 @@
 					}
 				}
 
-				> button {
+				button {
 					background-color: var(--orange);
 					color: white;
 					text-transform: uppercase;
 					padding: 0.5rem 0.75rem;
 					border-radius: 10px;
+				}
+
+				.success {
+					display: none;
+					margin-top: 0.5rem;
+				}
+
+				&:has(#newsletter-success:target) {
+					.success {
+						display: block;
+					}
 				}
 			}
 

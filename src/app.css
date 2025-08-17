@@ -15,10 +15,10 @@
 	--orange: #e85e27;
 	--brown: #5d4850;
 	--sand: #bf8c5b;
-	--khaki: #c69f7a;
+	--khaki: oklch(0.8474 0.0685 64.91);
 	--cream: #faefe7;
 	--gray: #222222;
-	--light-gray: #6f6e71;
+	--light-gray: oklch(0.6719 0.0048 301.35);
 }
 
 body {

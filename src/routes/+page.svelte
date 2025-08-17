@@ -2,6 +2,7 @@
 	import PhotoNode from './PhotoNode.svelte';
 	import worshipImage from '$lib/images/worship-image.jpg';
 	import PillButton from './PillButton.svelte';
+	import { processLink } from '$lib/utils';
 
 	const dummyEvents = ['event 1', 'event 2', 'event 3'];
 	const dummyVideos = ['event 1', 'event 2', 'event 3'];
@@ -84,16 +85,22 @@
 	<section class="contact-us">
 		<div class="contents">
 			<div>
-				<h1>contact us</h1>
+				<h1 id="contact-success">contact us</h1>
 				<p>We'd love to hear from you!</p>
 			</div>
-			<form>
-				<input placeholder="Name*" />
-				<input placeholder="Email*" />
-				<input placeholder="Phone*" />
-				<textarea placeholder="Questions"></textarea>
-				<button>Submit</button>
+			<form action="https://api.web3forms.com/submit" method="POST">
+				<input placeholder="Name*" name="name" required />
+				<input placeholder="Email*" name="email" required type="email" />
+				<input placeholder="Phone*" name="phone" required type="tel" />
+				<textarea placeholder="Questions" name="questions"></textarea>
+
+				<input type="hidden" name="access_key" value="b7687713-373a-47bc-aead-650d3987eb01" />
+				<input type="hidden" name="subject" value="[sturge.com] Contact Request" />
+				<input type="hidden" name="redirect" value={processLink('#contact-success')} />
+
+				<button type="submit">Submit</button>
 			</form>
+			<div class="success">request received!</div>
 		</div>
 	</section>
 </section>
@@ -289,6 +296,17 @@
 
 	.contact-us {
 		background: var(--gray);
+
+		.success {
+			margin-top: 0.5rem;
+			display: none;
+		}
+
+		&:has(#contact-success:target) {
+			.success {
+				display: block;
+			}
+		}
 
 		.contents {
 			margin: 0 auto;
