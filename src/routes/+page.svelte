@@ -300,6 +300,10 @@
 			display: flex;
 			flex-direction: column;
 			align-items: center;
+
+			> span {
+				margin-top: 0.5rem;
+			}
 		}
 
 		> div {
