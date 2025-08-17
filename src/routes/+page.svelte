@@ -25,7 +25,7 @@
 	</div>
 	<section class="hero">
 		<div class="hero-text">
-			<h1>worship. connect. grow.</h1>
+			<h1>connect. grow. worship</h1>
 			<span>together in christ jesus</span>
 		</div>
 	</section>
@@ -39,8 +39,8 @@
 	<section class="photo-nodes">
 		<PhotoNode
 			href="https://google.com"
-			title="worship with us"
-			description="Join us Sundays at 25 S Humboldt St, San Mateo, CA 94401 at 9:00am for Nichigo service, or 10:45am for English service"
+			title="connect with us"
+			description="Come fellowship with us and celebrate our faith, cultures, history, and food!"
 			imgSrc={worshipImage}
 		/>
 		<PhotoNode
@@ -52,8 +52,8 @@
 		/>
 		<PhotoNode
 			href="https://google.com"
-			title="connect with us"
-			description="Come fellowship with us and celebrate our faith, cultures, history, and food!"
+			title="worship with us"
+			description="Join us Sundays at 25 S Humboldt St, San Mateo, CA 94401 at 9:00am for Nichigo service, or 10:45am for English service"
 			imgSrc={worshipImage}
 		/>
 	</section>
