@@ -1,9 +1,12 @@
 <script lang="ts">
 	import PhotoNode from './PhotoNode.svelte';
-	import worshipImage from '$lib/images/worship-image.jpg';
+	import grow from '$lib/images/grow.png';
+	import connect from '$lib/images/connect.png';
+	import worship from '$lib/images/worship.png';
 	import PillButton from './PillButton.svelte';
 	import { processLink } from '$lib/utils';
 	import type { PageProps } from './$types';
+	import LogoOnly from './LogoOnly.svelte';
 
 	// TODO:
 	// functional dialog hooked into key event
@@ -33,8 +36,8 @@
 	{/if}
 	<section class="hero">
 		<div class="hero-text">
-			<h1>connect. grow. worship</h1>
-			<span>together in christ jesus</span>
+			<h1>connect. grow. worship.</h1>
+			<span>together in christ jesus.</span>
 		</div>
 	</section>
 	<section class="worship-times">
@@ -49,31 +52,34 @@
 			href="https://google.com"
 			title="connect with us"
 			description="Come fellowship with us and celebrate our faith, cultures, history, and food!"
-			imgSrc={worshipImage}
+			imgSrc={connect}
 		/>
 		<PhotoNode
 			href="https://google.com"
 			title="grow with us"
 			description="Join us we serve our local and global communities"
-			imgSrc={worshipImage}
+			imgSrc={grow}
 			imgSide="right"
 		/>
 		<PhotoNode
 			href="https://google.com"
 			title="worship with us"
 			description="Join us Sundays at 25 S Humboldt St, San Mateo, CA 94401 at 9:00am for Nichigo service, or 10:45am for English service"
-			imgSrc={worshipImage}
+			imgSrc={worship}
 		/>
 	</section>
 	<section class="upcoming-events">
-		<h1>Upcoming Events</h1>
+		<div>
+			<h1>Featured Events</h1>
+			<PillButton href="google.com">All Events</PillButton>
+		</div>
 		<ul>
 			{#each events as event}
 				<li>
 					<img
 						src={event.attachments[0].fileId
 							? `https://drive.google.com/thumbnail?id=${event.attachments[0].fileId}`
-							: worshipImage}
+							: connect}
 						alt={event.summary}
 					/>
 					<span class="date">
@@ -93,7 +99,7 @@
 	<section class="sermons">
 		<div>
 			<div class="sermon-header">
-				<h1>Recent Sermon</h1>
+				<h1>Latest Sermon</h1>
 				<PillButton href="https://www.youtube.com/@sturgechurch">All sermons</PillButton>
 			</div>
 			<div class="sermon-video">
@@ -132,6 +138,20 @@
 			<div class="success">request received!</div>
 		</div>
 	</section>
+
+	<section class="mission">
+		<div class="mission-content">
+			<div class="logo">
+				<LogoOnly />
+			</div>
+			<div class="divider"></div>
+			<div>
+				<h2>our mission statement</h2>
+				Bringing Asian believers together, while welcoming all into our family, to provide hope, support
+				and service to local and global communities, in the name of Jesus Christ.
+			</div>
+		</div>
+	</section>
 </section>
 
 <style>
@@ -155,7 +175,7 @@
 	}
 
 	.hero {
-		background-image: url('$lib/images/bg-hero.jpg');
+		background-image: url('$lib/images/bg-hero.png');
 		background-size: cover;
 		background-position: center;
 
@@ -169,7 +189,7 @@
 		.hero-text {
 			--padding-x: 1rem;
 
-			backdrop-filter: contrast(60%) blur(5px);
+			backdrop-filter: contrast(70%) blur(1px);
 			width: calc(100% - 2 * var(--padding-x));
 			height: 100%;
 
@@ -238,10 +258,17 @@
 		margin: 0 auto;
 		max-width: 1000px;
 
+		> div:first-child {
+			display: flex;
+			align-items: center;
+			width: 100%;
+			justify-content: space-between;
+			margin-bottom: 1.5rem;
+		}
+
 		h1 {
 			margin: 0;
 			font-size: 2rem;
-			margin-bottom: 1.5rem;
 
 			text-transform: lowercase;
 		}
@@ -413,6 +440,59 @@
 				font-weight: 500;
 				letter-spacing: 0.08rem;
 			}
+		}
+	}
+
+	@media (min-width: 700px) {
+		.mission {
+			text-align: left;
+
+			.mission-content {
+				flex-direction: row;
+				gap: 3rem;
+			}
+
+			.divider {
+				height: 7rem;
+				border-right: 1px solid var(--deep-purple);
+				border-bottom: none;
+				width: 0px;
+			}
+		}
+	}
+
+	.mission {
+		background: var(--khaki);
+		text-align: center;
+
+		.mission-content {
+			max-width: 1000px;
+			margin: 0 auto;
+			padding: 2rem;
+
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			gap: 1rem;
+		}
+
+		.logo {
+			height: 7rem;
+			width: 7rem;
+			flex-shrink: 0;
+		}
+
+		.divider {
+			height: 0px;
+			width: 14rem;
+			max-width: 100%;
+			border-bottom: 1px solid var(--deep-purple);
+			border-right: none;
+		}
+
+		h2 {
+			font-size: 1.5rem;
+			margin: 0 0 0.25rem;
 		}
 	}
 </style>
