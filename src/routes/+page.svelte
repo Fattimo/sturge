@@ -7,6 +7,8 @@
 	import { processLink } from '$lib/utils';
 	import type { PageProps } from './$types';
 	import LogoOnly from './LogoOnly.svelte';
+	import FooterLogo from './FooterLogo.svelte';
+	import ColorInheritLogo from './ColorInheritLogo.svelte';
 
 	// TODO:
 	// functional dialog hooked into key event
@@ -26,76 +28,89 @@
 <section>
 	{#if firstEvent}
 		<div class="banner">
-			Save the date: {new Date(firstEvent.start).toLocaleDateString(undefined, {
-				year: 'numeric',
-				month: 'long',
-				day: 'numeric'
-			})}: {firstEvent.summary}
-			<PillButton onclick={() => {}}>Learn more</PillButton>
+			<div class="multiply-layer"></div>
+
+			<div class="banner-content">
+				Save the date: {new Date(firstEvent.start).toLocaleDateString(undefined, {
+					year: 'numeric',
+					month: 'long',
+					day: 'numeric'
+				})}: {firstEvent.summary}
+				<PillButton size="responsive" onclick={() => {}}>Learn more</PillButton>
+			</div>
 		</div>
 	{/if}
 	<section class="hero">
 		<div class="hero-text">
-			<h1>connect. grow. worship.</h1>
+			<h2>connect. grow. worship.</h2>
 			<span>together in christ jesus.</span>
+			<div class="zoom-button">
+				<PillButton href="https://us06web.zoom.us/j/82465688368">ENGLISH ZOOM</PillButton>
+			</div>
 		</div>
 	</section>
 	<section class="worship-times">
-		Join us for worship on Sundays in-person at <a href="https://maps.app.goo.gl/ttgJf9wqB37656627"
-			>Sturge Presbyterian Church</a
-		>
-		or <a href="https://us06web.zoom.us/j/82465688368">online on Zoom</a> at 9:00am Japanese &bull; 10:45am
-		English
-	</section>
-	<section class="photo-nodes">
-		<PhotoNode
-			href="https://google.com"
-			title="connect with us"
-			description="Come fellowship with us and celebrate our faith, cultures, history, and food!"
-			imgSrc={connect}
-		/>
-		<PhotoNode
-			href="https://google.com"
-			title="grow with us"
-			description="Join us we serve our local and global communities"
-			imgSrc={grow}
-			imgSide="right"
-		/>
-		<PhotoNode
-			href="https://google.com"
-			title="worship with us"
-			description="Join us Sundays at 25 S Humboldt St, San Mateo, CA 94401 at 9:00am for Nichigo service, or 10:45am for English service"
-			imgSrc={worship}
-		/>
-	</section>
-	<section class="upcoming-events">
-		<div>
-			<h1>Featured Events</h1>
-			<PillButton href="https://google.com">All Events</PillButton>
+		<div class="worship-times-content">
+			<h1>Sturge Presbyterian Church</h1>
+			Join us for worship services on Sundays at<br /> 9:00am Japanese &bull; 10:45am English
+			<a href="https://maps.app.goo.gl/ttgJf9wqB37656627">google maps</a>
 		</div>
-		<ul>
-			{#each events as event}
-				<li>
-					<img
-						src={event.attachments[0].fileId
-							? `https://drive.google.com/thumbnail?id=${event.attachments[0].fileId}`
-							: connect}
-						alt={event.summary}
-					/>
-					<span class="date">
-						{new Date(event.start).toLocaleDateString(undefined, {
-							year: 'numeric',
-							month: 'long',
-							day: 'numeric'
-						})}
-					</span>
-					<span class="event-title">
-						{event.summary}
-					</span>
-				</li>
-			{/each}
-		</ul>
+		<div class="multiply-layer"></div>
 	</section>
+	<div class="cream-background">
+		<section class="photo-nodes">
+			<PhotoNode
+				href="https://google.com"
+				title="connect with us"
+				description="Come fellowship with us and celebrate our faith, cultures, history, and food!"
+				imgSrc={connect}
+			/>
+			<PhotoNode
+				href="https://google.com"
+				title="grow with us"
+				description="Join us we serve our local and global communities"
+				imgSrc={grow}
+				imgSide="right"
+			/>
+			<PhotoNode
+				href="https://google.com"
+				title="worship with us"
+				description="Join us Sundays at 25 S Humboldt St, San Mateo, CA 94401 at 9:00am for Nichigo service, or 10:45am for English service"
+				imgSrc={worship}
+			/>
+		</section>
+		<div class="bg-flower">
+			<ColorInheritLogo />
+		</div>
+		<section class="upcoming-events">
+			<div>
+				<h1>Featured Events</h1>
+				<PillButton href="https://google.com">All Events</PillButton>
+			</div>
+			<ul>
+				{#each events as event}
+					<li>
+						<img
+							src={event.attachments[0].fileId
+								? `https://drive.google.com/thumbnail?id=${event.attachments[0].fileId}`
+								: connect}
+							alt={event.summary}
+						/>
+						<span class="date">
+							{new Date(event.start).toLocaleDateString(undefined, {
+								year: 'numeric',
+								month: 'long',
+								day: 'numeric'
+							})}
+						</span>
+						<span class="event-title">
+							{event.summary}
+						</span>
+					</li>
+				{/each}
+			</ul>
+		</section>
+	</div>
 	<section class="sermons">
 		<div>
 			<div class="sermon-header">
@@ -104,8 +119,8 @@
 			</div>
 			<div class="sermon-video">
 				<iframe
-					width="560"
-					height="315"
+					width="100%"
+					height="100%"
 					src={`https://www.youtube.com/embed/${firstVideo?.id || 'Hbz8Slq6N5s'}`}
 					title="YouTube video player"
 					frameborder="0"
@@ -156,25 +171,49 @@
 
 <style>
 	.banner {
+		padding: 0.5rem 1rem;
 		display: flex;
-		justify-content: center;
 		align-items: center;
-		gap: 0.5rem;
+		justify-content: center;
 
-		width: 100%;
-		padding: 0.5rem;
-
-		font-size: 0.8rem;
+		font-size: 0.7rem;
 
 		@media (min-width: 700px) {
 			font-size: 1rem;
+			padding: 0.5rem 2rem;
 		}
 
-		background-color: var(--slate-blue);
+		background-color: var(--deep-purple);
+		text-transform: uppercase;
+		font-weight: 600;
+		letter-spacing: 0.8px;
 		color: white;
+
+		position: relative;
+
+		.multiply-layer {
+			height: 130%;
+			width: 100%;
+			background-color: color-mix(in oklch, var(--deep-purple), transparent 40%);
+			top: 0;
+			position: absolute;
+			pointer-events: none;
+			left: 0;
+			z-index: 1;
+		}
+
+		.banner-content {
+			z-index: 2;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			gap: 0.5rem;
+			position: relative;
+		}
 	}
 
 	.hero {
+		position: relative;
 		background-image: url('$lib/images/bg-hero.png');
 		background-size: cover;
 		background-position: center;
@@ -184,6 +223,11 @@
 		aspect-ratio: 3 / 2;
 		@media (min-width: 700px) {
 			aspect-ratio: 6 / 2;
+		}
+
+		.zoom-button {
+			position: absolute;
+			bottom: 3rem;
 		}
 
 		.hero-text {
@@ -203,8 +247,8 @@
 
 			color: white;
 
-			h1 {
-				font-size: 2.5rem;
+			h2 {
+				font-size: 1.8rem;
 				line-height: 1.5;
 				margin: 0;
 
@@ -216,24 +260,41 @@
 			span {
 				text-transform: uppercase;
 				align-self: flex-start;
-
-				@media (min-width: 580px) {
-					align-self: auto;
-				}
+				align-self: auto;
 			}
 		}
 	}
 
 	.worship-times {
+		position: relative;
 		padding: 1rem;
 		font-size: 0.8rem;
+
+		.worship-times-content {
+			position: relative;
+			z-index: 1;
+		}
 
 		@media (min-width: 700px) {
 			padding: 2rem;
 			font-size: 1rem;
+
+			br {
+				display: none;
+			}
 		}
 
-		background-color: var(--deep-purple);
+		h1 {
+			margin: 0 0 0.3rem;
+
+			font-size: 1.2rem;
+
+			@media (min-width: 700px) {
+				font-size: 1.6rem;
+			}
+		}
+
+		background-color: var(--sand);
 		color: white;
 		text-align: center;
 
@@ -245,15 +306,44 @@
 				text-decoration-thickness: 2px;
 			}
 		}
+
+		.multiply-layer {
+			width: 100%;
+			background-color: color-mix(in oklch, var(--sand), transparent 40%);
+			position: absolute;
+			bottom: -2px;
+			left: 0;
+			height: 120%;
+			z-index: 0;
+			pointer-events: none;
+		}
+	}
+
+	.cream-background {
+		background-color: var(--cream);
+
+		.bg-flower {
+			width: 90%;
+			position: absolute;
+			right: 0;
+			transform: translate(150px, -50%);
+
+			color: var(--light-cream);
+		}
 	}
 
 	.photo-nodes {
 		padding: 3rem 2rem;
-		background-color: var(--cream);
 		justify-items: center;
+
+		position: relative;
+		z-index: 1;
 	}
 
 	.upcoming-events {
+		position: relative;
+		z-index: 1;
+
 		padding: 2rem;
 		margin: 0 auto;
 		max-width: 1000px;
@@ -315,6 +405,8 @@
 
 	.sermons {
 		background: var(--khaki);
+		position: relative;
+		z-index: 1;
 
 		.sermon-header {
 			display: flex;
@@ -327,6 +419,8 @@
 			display: flex;
 			flex-direction: column;
 			align-items: center;
+
+			aspect-ratio: 16 / 9;
 
 			> span {
 				margin-top: 0.5rem;
@@ -462,7 +556,7 @@
 	}
 
 	.mission {
-		background: var(--khaki);
+		background: var(--light-cream);
 		text-align: center;
 
 		.mission-content {

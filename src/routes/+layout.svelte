@@ -89,7 +89,7 @@
 	}
 
 	footer {
-		background-color: var(--deep-purple);
+		background-color: var(--deeper-purple);
 		color: white;
 		max-width: 100vw;
 		overflow: hidden;
