@@ -21,6 +21,7 @@
 	--light-cream: oklch(0.9584 0.0131 71.33);
 	--gray: #222222;
 	--light-gray: oklch(0.6719 0.0048 301.35);
+	--green: #277531;
 }
 
 body {

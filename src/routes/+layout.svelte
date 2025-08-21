@@ -113,13 +113,13 @@
 			gap: 0 1em;
 
 			grid-template-areas:
-				'join'
-				'contact'
-				'visit '
-				'follow'
-				'contact-form'
-				'logo';
-			grid-template-columns: 1fr;
+				'contact-form join'
+				'contact-form contact'
+				'contact-form visit '
+				'contact-form follow'
+				'logo logo';
+			grid-template-columns: 40% 55%;
+			grid-template-rows: repeat(6, fit-content);
 
 			@media (min-width: 700px) {
 				gap: 0 2rem;
@@ -196,6 +196,7 @@
 			.follow {
 				grid-area: follow;
 				visibility: hidden;
+				height: 0;
 			}
 
 			.visit {
@@ -212,11 +213,7 @@
 				text-transform: uppercase;
 				margin-top: 1rem;
 
-				text-align: center;
-
-				@media (min-width: 700px) {
-					text-align: left;
-				}
+				text-align: left;
 
 				> a {
 					color: white;
@@ -254,10 +251,10 @@
 		width: 1000px;
 		max-width: 100vw;
 		margin: 0 auto;
+		font-size: 0.5rem;
 
 		@media (min-width: 700px) {
 			padding: 1em 2em;
-			font-size: 0.5rem;
 		}
 	}
 </style>

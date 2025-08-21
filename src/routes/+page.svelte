@@ -82,6 +82,10 @@
 		<div class="bg-flower">
 			<ColorInheritLogo />
 		</div>
+		<div class="color-splash">
+			<div class="yellow"></div>
+			<div class="green"></div>
+		</div>
 		<section class="upcoming-events">
 			<div>
 				<h1>Featured Events</h1>
@@ -321,6 +325,8 @@
 
 	.cream-background {
 		background-color: var(--cream);
+		overflow: hidden;
+		position: relative;
 
 		.bg-flower {
 			width: 90%;
@@ -329,6 +335,23 @@
 			transform: translate(150px, -50%);
 
 			color: var(--light-cream);
+		}
+	}
+
+	.color-splash {
+		position: relative;
+		z-index: 1;
+
+		.green {
+			background: color-mix(in oklch, var(--green), transparent 10%);
+			width: 100%;
+			height: 30px;
+		}
+
+		.yellow {
+			background: color-mix(in oklch, var(--sand), transparent 10%);
+			width: 100%;
+			height: 15px;
 		}
 	}
 
@@ -557,31 +580,45 @@
 
 	.mission {
 		background: var(--light-cream);
-		text-align: center;
 
 		.mission-content {
 			max-width: 1000px;
 			margin: 0 auto;
-			padding: 2rem;
+			padding: 2rem 1rem;
 
 			display: flex;
-			flex-direction: column;
 			align-items: center;
 			gap: 1rem;
 		}
 
+		@media (min-width: 700px) {
+			padding: 2rem;
+		}
+
 		.logo {
-			height: 7rem;
-			width: 7rem;
+			height: 5rem;
+			width: 5rem;
 			flex-shrink: 0;
+
+			@media (min-width: 700px) {
+				height: 7rem;
+				width: 7rem;
+			}
 		}
 
 		.divider {
-			height: 0px;
-			width: 14rem;
+			display: none;
+
+			@media min-width(700px) {
+				display: block;
+			}
+		}
+
+		.divider {
+			height: 7rem;
+			width: 0;
 			max-width: 100%;
-			border-bottom: 1px solid var(--deep-purple);
-			border-right: none;
+			border-right: 1px solid var(--deep-purple);
 		}
 
 		h2 {
