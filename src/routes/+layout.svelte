@@ -228,7 +228,10 @@
 
 				display: flex;
 				flex-direction: column;
-				text-align: center;
+
+				@media (min-width: 700px) {
+					text-align: center;
+				}
 
 				height: 100%;
 				justify-content: flex-end;

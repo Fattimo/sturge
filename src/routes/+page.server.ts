@@ -58,8 +58,12 @@ export async function load() {
 			`https://www.googleapis.com/youtube/v3/search?` +
 				`key=${GOOGLE_API_KEY}&channelId=${STURGE_CHANNEL_ID}&part=snippet,id&order=date&maxResults=1`
 		);
+		console.error(youtubeResponse);
 		if (!youtubeResponse.ok) {
-			throw new Error('Failed to fetch events');
+			return {
+				events,
+				firstVideo: null
+			};
 		}
 		const youtubeData = await youtubeResponse.json();
 		const firstVideo = youtubeData.items[0];
