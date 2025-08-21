@@ -71,7 +71,7 @@
 	<section class="upcoming-events">
 		<div>
 			<h1>Featured Events</h1>
-			<PillButton href="google.com">All Events</PillButton>
+			<PillButton href="https://google.com">All Events</PillButton>
 		</div>
 		<ul>
 			{#each events as event}
