@@ -7,13 +7,12 @@
 	import { processLink } from '$lib/utils';
 	import type { PageProps } from './$types';
 	import LogoOnly from './LogoOnly.svelte';
-	import FooterLogo from './FooterLogo.svelte';
 	import ColorInheritLogo from './ColorInheritLogo.svelte';
 
 	// TODO:
 	// functional dialog hooked into key event
-	// cron job
-	// assets
+	// button in grow with us
+	// staging, dev, prod env
 
 	const { data }: PageProps = $props();
 	const { events, firstVideo } = data;

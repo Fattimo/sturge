@@ -51,11 +51,6 @@ export async function load() {
 			})
 		);
 
-		return {
-			events,
-			firstVideo: null
-		};
-
 		// youtube
 		const youtubeResponse = await fetch(
 			`https://www.googleapis.com/youtube/v3/search?` +
