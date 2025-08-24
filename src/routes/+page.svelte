@@ -53,31 +53,34 @@
 		<div class="worship-times-content">
 			<h1>Sturge Presbyterian Church</h1>
 			Join us for worship services on Sundays at<br /> 9:00am Japanese &bull; 10:45am English
-			<a href="https://maps.app.goo.gl/ttgJf9wqB37656627">google maps</a>
 		</div>
 		<div class="multiply-layer"></div>
 	</section>
 	<div class="cream-background">
 		<section class="photo-nodes">
-			<PhotoNode
-				href="https://google.com"
-				title="connect with us"
-				description="Come fellowship with us and celebrate our faith, cultures, history, and food!"
-				imgSrc={connect}
-			/>
-			<PhotoNode
-				href="https://google.com"
-				title="grow with us"
-				description="Join us we serve our local and global communities"
-				imgSrc={grow}
-				imgSide="right"
-			/>
-			<PhotoNode
-				href="https://google.com"
-				title="worship with us"
-				description="Join us Sundays at 25 S Humboldt St, San Mateo, CA 94401 at 9:00am for Nichigo service, or 10:45am for English service"
-				imgSrc={worship}
-			/>
+			<PhotoNode title="connect with us" imgSrc={connect}>
+				{#snippet description()}
+					<h4>ALL CHURCH EVENTS</h4>
+					Come fellowship with us and celebrate our faith, cultures, history, and food!
+				{/snippet}
+			</PhotoNode>
+			<PhotoNode title="grow with us" imgSrc={grow} imgSide="right">
+				{#snippet description()}
+					<h4>MISSIONS + OUTREACH PROGRAMS</h4>
+					Join us we serve our local and global communities
+				{/snippet}
+			</PhotoNode>
+			<PhotoNode title="worship with us" imgSrc={worship}>
+				{#snippet description()}
+					JOIN US ON SUNDAYS AT <div class="service-blurb">
+						9∶00 AM Japanese Service<br />10∶45 AM English Service
+					</div>
+					<div class="service-buttons">
+						<PillButton href="https://us06web.zoom.us/j/82465688368">ENGLISH ZOOM</PillButton>
+						<PillButton href="https://maps.app.goo.gl/ttgJf9wqB37656627">DIRECTIONS</PillButton>
+					</div>
+				{/snippet}
+			</PhotoNode>
 		</section>
 		<div class="bg-flower">
 			<ColorInheritLogo />
@@ -173,7 +176,7 @@
 	</section>
 </section>
 
-<style>
+<style lang="css">
 	.banner {
 		padding: 0.5rem 1rem;
 		display: flex;
@@ -356,7 +359,11 @@
 	}
 
 	.photo-nodes {
-		padding: 3rem 2rem;
+		padding: 2rem 1rem;
+
+		@media (min-width: 700px) {
+			padding: 3rem 2rem;
+		}
 		justify-items: center;
 
 		position: relative;
@@ -624,6 +631,29 @@
 		h2 {
 			font-size: 1.5rem;
 			margin: 0 0 0.25rem;
+		}
+	}
+
+	h4 {
+		margin: 0;
+	}
+
+	.service-blurb {
+		display: inline-flex;
+		flex-direction: column;
+		text-wrap: nowrap;
+	}
+
+	.service-buttons {
+		display: none;
+	}
+
+	@media (min-width: 700px) {
+		.service-buttons {
+			display: inline-flex;
+			flex-direction: column;
+			margin-top: 0.125rem;
+			gap: 0.25rem;
 		}
 	}
 </style>

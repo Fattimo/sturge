@@ -5,8 +5,6 @@ const PUBLIC_CALENDAR_ID =
 	'884f0388322a4de78749e56c73dbcc24fdc81a4c8755c999532750f50bd5c5d0@group.calendar.google.com';
 const STURGE_CHANNEL_ID = 'UCAAKEN_t0O0DA2OToKlpljg';
 
-export const prerender = true;
-
 type GcalEvent = {
 	summary: string;
 	start: string;
@@ -53,12 +51,16 @@ export async function load() {
 			})
 		);
 
+		return {
+			events,
+			firstVideo: null
+		};
+
 		// youtube
 		const youtubeResponse = await fetch(
 			`https://www.googleapis.com/youtube/v3/search?` +
 				`key=${GOOGLE_API_KEY}&channelId=${STURGE_CHANNEL_ID}&part=snippet,id&order=date&maxResults=1`
 		);
-		console.error(youtubeResponse);
 		if (!youtubeResponse.ok) {
 			return {
 				events,

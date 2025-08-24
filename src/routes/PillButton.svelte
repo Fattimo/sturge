@@ -36,6 +36,7 @@
 	a,
 	button {
 		font-size: 0.8rem;
+		text-align: center;
 
 		padding: 0.25rem 0.75rem;
 
