@@ -42,7 +42,7 @@
 		--text-size: 40%;
 		grid-template-columns: 1fr var(--text-size);
 
-		&.right {
+		&:where(.right) {
 			grid-template-columns: var(--text-size) 1fr;
 		}
 
