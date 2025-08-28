@@ -11,8 +11,7 @@
 	import Dialog from './Dialog.svelte';
 
 	// TODO:
-	// functional dialog hooked into key event
-	// button in grow with us
+	// functional dialog
 	// staging, dev, prod env
 
 	const ALL_CALENDAR_LINK =
