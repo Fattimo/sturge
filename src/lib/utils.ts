@@ -24,6 +24,7 @@ export const processLink = (
 	const relative =
 		finalLink.length > 1 && finalLink.endsWith('/') ? finalLink.slice(0, -1) : finalLink;
 
-	if (absolute) return `${window.origin}${relative}`;
+	if (absolute)
+		return `${window.origin}${window.origin.includes('github') ? '/sturge' : ''}${relative}`;
 	return relative;
 };

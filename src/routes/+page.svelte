@@ -107,7 +107,7 @@
 					<li>
 						<img
 							src={event.attachments[0].fileId
-								? `https://drive.google.com/thumbnail?id=${event.attachments[0].fileId}`
+								? `https://drive.google.com/thumbnail?id=${event.attachments[0].fileId}&sz=w1000`
 								: connect}
 							alt={event.summary}
 						/>
