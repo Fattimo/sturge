@@ -4,10 +4,11 @@
 	import connect from '$lib/images/connect.png';
 	import worship from '$lib/images/worship.png';
 	import PillButton from './PillButton.svelte';
-	import { processLink } from '$lib/utils';
+	import { EMAIL_ACCESS_KEY, processLink, sanitizeHTML } from '$lib/utils';
 	import type { PageProps } from './$types';
 	import LogoOnly from './LogoOnly.svelte';
 	import ColorInheritLogo from './ColorInheritLogo.svelte';
+	import Dialog from './Dialog.svelte';
 
 	// TODO:
 	// functional dialog hooked into key event
@@ -23,12 +24,52 @@
 	const { data }: PageProps = $props();
 	const { events, firstVideo } = data;
 	const firstEvent = events[0];
+
+	let bannerDialogRef: Dialog;
 </script>
 
 <svelte:head>
 	<title>Sturge Presbyterian Church - Home</title>
 	<meta name="description" content="Sturge Presbyterian Church Home Page" />
 </svelte:head>
+
+{#snippet eventDialogContent(event: (typeof events)[number])}
+	<section class="event-snippet">
+		<img
+			src={event.attachments[0].fileId
+				? `https://drive.google.com/thumbnail?id=${event.attachments[0].fileId}&sz=w1000`
+				: connect}
+			alt={event.summary}
+		/>
+		<div>
+			<span class="date">
+				{new Date(event.start).toLocaleDateString(undefined, {
+					year: 'numeric',
+					month: 'long',
+					day: 'numeric'
+				})}
+			</span>
+			<span class="event-title">
+				{event.summary}
+			</span>
+			<div>
+				{@html sanitizeHTML(event.description)}
+			</div>
+		</div>
+	</section>
+
+	<style>
+		.event-snippet {
+			display: flex;
+		}
+
+		img {
+			max-height: 80vh;
+			aspect-ratio: 8.5/ 11;
+			object-fit: cover;
+		}
+	</style>
+{/snippet}
 
 <section>
 	{#if firstEvent}
@@ -41,8 +82,16 @@
 					month: 'long',
 					day: 'numeric'
 				})}: {firstEvent.summary}
-				<PillButton size="responsive" onclick={() => {}}>Learn more</PillButton>
+				<PillButton
+					size="responsive"
+					onclick={() => {
+						bannerDialogRef.open();
+					}}>Learn more</PillButton
+				>
 			</div>
+			<Dialog bind:this={bannerDialogRef} defaultOpen
+				>{@render eventDialogContent(firstEvent)}</Dialog
+			>
 		</div>
 	{/if}
 	<section class="hero">
@@ -159,7 +208,7 @@
 				<input placeholder="Phone*" name="phone" required type="tel" />
 				<textarea placeholder="Questions" name="questions"></textarea>
 
-				<input type="hidden" name="access_key" value="b7687713-373a-47bc-aead-650d3987eb01" />
+				<input type="hidden" name="access_key" value={EMAIL_ACCESS_KEY} />
 				<input type="hidden" name="subject" value="[sturge.com] Contact Request" />
 				<input type="hidden" name="redirect" value={processLink('#contact-success')} />
 

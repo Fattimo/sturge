@@ -7,7 +7,7 @@
 
 	import '../app.css';
 	import FooterLogo from './FooterLogo.svelte';
-	import { processLink } from '$lib/utils';
+	import { EMAIL_ACCESS_KEY, processLink } from '$lib/utils';
 
 	const { children }: LayoutProps = $props();
 </script>
@@ -28,7 +28,7 @@
 					<b>Weekly eNewsletter</b>
 				</div>
 				<form action="https://api.web3forms.com/submit" method="POST">
-					<input type="hidden" name="access_key" value="b7687713-373a-47bc-aead-650d3987eb01" />
+					<input type="hidden" name="access_key" value={EMAIL_ACCESS_KEY} />
 					<input type="hidden" name="subject" value="[sturge.com] Sturge Newsletter Request" />
 					<input type="hidden" name="redirect" value={processLink('#newsletter-success')} />
 

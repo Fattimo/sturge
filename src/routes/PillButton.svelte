@@ -39,6 +39,7 @@
 		text-align: center;
 
 		padding: 0.25rem 0.75rem;
+		cursor: pointer;
 
 		&[data-is-small='true'] {
 			padding: 0.2rem 0.5rem;
