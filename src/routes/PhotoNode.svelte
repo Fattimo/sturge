@@ -101,7 +101,8 @@
 		}
 
 		h3 {
-			font-size: 1.25rem;
+			font-size: 1.3rem;
+			text-wrap: balance;
 			margin: 0 0 0.5rem;
 
 			@media (min-width: 700px) {

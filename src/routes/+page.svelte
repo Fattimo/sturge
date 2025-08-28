@@ -14,6 +14,12 @@
 	// button in grow with us
 	// staging, dev, prod env
 
+	const ALL_CALENDAR_LINK =
+		'https://calendar.google.com/calendar/u/0?cid=ODg0ZjAzODgzMjJhNGRlNzg3NDllNTZjNzNkYmNjMjRmZGM4MWE0Yzg3NTVjOTk5NTMyNzUwZjUwYmQ1YzVkMEBncm91cC5jYWxlbmRhci5nb29nbGUuY29t';
+	const ENGLISH_ZOOM_LINK = 'https://us06web.zoom.us/j/82465688368';
+	const GOOGLE_MAPS_LINK = 'https://maps.app.goo.gl/ttgJf9wqB37656627';
+	const YOUTUBE_LINK = 'https://www.youtube.com/@sturgechurch';
+
 	const { data }: PageProps = $props();
 	const { events, firstVideo } = data;
 	const firstEvent = events[0];
@@ -44,7 +50,7 @@
 			<h2>connect. grow. worship.</h2>
 			<span>together in christ jesus.</span>
 			<div class="zoom-button">
-				<PillButton href="https://us06web.zoom.us/j/82465688368">ENGLISH ZOOM</PillButton>
+				<PillButton href={ENGLISH_ZOOM_LINK}>ENGLISH ZOOM</PillButton>
 			</div>
 		</div>
 	</section>
@@ -67,6 +73,9 @@
 				{#snippet description()}
 					<h4>MISSIONS + OUTREACH PROGRAMS</h4>
 					Join us we serve our local and global communities
+					<div class="missions-button">
+						<PillButton href={ALL_CALENDAR_LINK}>CALENDAR</PillButton>
+					</div>
 				{/snippet}
 			</PhotoNode>
 			<PhotoNode title="worship with us" imgSrc={worship}>
@@ -75,8 +84,8 @@
 						9∶00 AM Japanese Service<br />10∶45 AM English Service
 					</div>
 					<div class="service-buttons">
-						<PillButton href="https://us06web.zoom.us/j/82465688368">ENGLISH ZOOM</PillButton>
-						<PillButton href="https://maps.app.goo.gl/ttgJf9wqB37656627">DIRECTIONS</PillButton>
+						<PillButton href={ENGLISH_ZOOM_LINK}>ENGLISH ZOOM</PillButton>
+						<PillButton href={GOOGLE_MAPS_LINK}>DIRECTIONS</PillButton>
 					</div>
 				{/snippet}
 			</PhotoNode>
@@ -91,7 +100,7 @@
 		<section class="upcoming-events">
 			<div>
 				<h1>Featured Events</h1>
-				<PillButton href="https://google.com">All Events</PillButton>
+				<PillButton href={ALL_CALENDAR_LINK}>All Events</PillButton>
 			</div>
 			<ul>
 				{#each events as event}
@@ -121,7 +130,7 @@
 		<div>
 			<div class="sermon-header">
 				<h1>Latest Sermon</h1>
-				<PillButton href="https://www.youtube.com/@sturgechurch">All sermons</PillButton>
+				<PillButton href={YOUTUBE_LINK}>All sermons</PillButton>
 			</div>
 			<div class="sermon-video">
 				<iframe
@@ -367,6 +376,15 @@
 
 		position: relative;
 		z-index: 1;
+	}
+
+	.missions-button {
+		margin-top: 0.5rem;
+		display: none;
+
+		@media (min-width: 700px) {
+			display: block;
+		}
 	}
 
 	.upcoming-events {
