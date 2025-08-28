@@ -27,10 +27,10 @@
 					<a href={processLink('/counter')}>Contact Us</a>
 				</li>
 				<li>
-					<a href={processLink(page.url.pathname, 'en')} data-sveltekit-reload>English</a>
+					<a href={processLink(page.url.pathname, {locale: 'en'})} data-sveltekit-reload>English</a>
 				</li>
 				<li>
-					<a href={processLink(page.url.pathname, 'jp')} data-sveltekit-reload>Japanese</a>
+					<a href={processLink(page.url.pathname, {locale: 'jp'})} data-sveltekit-reload>Japanese</a>
 				</li>
 			{/if}
 			<li>
