@@ -67,7 +67,7 @@ type AllowedAttributes = {
 	[key in AllowedTags | '*']?: string[];
 };
 
-export function sanitizeHTML(html: string): string {
+export function sanitizeHTML(html: string = ''): string {
 	// Define allowed tags
 	const allowedTags: Set<string> = new Set([
 		'p',

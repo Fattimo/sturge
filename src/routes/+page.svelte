@@ -9,10 +9,8 @@
 	import LogoOnly from './LogoOnly.svelte';
 	import ColorInheritLogo from './ColorInheritLogo.svelte';
 	import Dialog from './Dialog.svelte';
-
-	// TODO:
-	// functional dialog
-	// staging, dev, prod env
+	import EventCard from './EventCard.svelte';
+	import EventDialogContent from './EventDialogContent.svelte';
 
 	const ALL_CALENDAR_LINK =
 		'https://calendar.google.com/calendar/u/0?cid=ODg0ZjAzODgzMjJhNGRlNzg3NDllNTZjNzNkYmNjMjRmZGM4MWE0Yzg3NTVjOTk5NTMyNzUwZjUwYmQ1YzVkMEBncm91cC5jYWxlbmRhci5nb29nbGUuY29t';
@@ -24,51 +22,38 @@
 	const { events, firstVideo } = data;
 	const firstEvent = events[0];
 
-	let bannerDialogRef: Dialog;
+	let dialogRef: Dialog;
+	let shouldOpenDialog = $state(false);
+
+	// Check if we should show the dialog for this event
+	$effect(() => {
+		if (firstEvent) {
+			// Create a unique identifier for the event (using summary and start date)
+			const eventId = `${firstEvent.summary}-${firstEvent.start}`;
+
+			try {
+				const lastPoppedEvent = localStorage.getItem('lastPoppedEvent');
+
+				// Only show dialog if this is a different event than the last one shown
+				if (lastPoppedEvent !== eventId) {
+					shouldOpenDialog = true;
+					// Store this event as the last popped event
+					localStorage.setItem('lastPoppedEvent', eventId);
+				}
+			} catch (e) {
+				// Fallback if localStorage is not available
+				console.warn('localStorage not available:', e);
+				// You could use a different storage mechanism here or just default to showing
+				shouldOpenDialog = false;
+			}
+		}
+	});
 </script>
 
 <svelte:head>
 	<title>Sturge Presbyterian Church - Home</title>
 	<meta name="description" content="Sturge Presbyterian Church Home Page" />
 </svelte:head>
-
-{#snippet eventDialogContent(event: (typeof events)[number])}
-	<section class="event-snippet">
-		<img
-			src={event.attachments[0].fileId
-				? `https://drive.google.com/thumbnail?id=${event.attachments[0].fileId}&sz=w1000`
-				: connect}
-			alt={event.summary}
-		/>
-		<div>
-			<span class="date">
-				{new Date(event.start).toLocaleDateString(undefined, {
-					year: 'numeric',
-					month: 'long',
-					day: 'numeric'
-				})}
-			</span>
-			<span class="event-title">
-				{event.summary}
-			</span>
-			<div>
-				{@html sanitizeHTML(event.description)}
-			</div>
-		</div>
-	</section>
-
-	<style>
-		.event-snippet {
-			display: flex;
-		}
-
-		img {
-			max-height: 80vh;
-			aspect-ratio: 8.5/ 11;
-			object-fit: cover;
-		}
-	</style>
-{/snippet}
 
 <section>
 	{#if firstEvent}
@@ -84,13 +69,13 @@
 				<PillButton
 					size="responsive"
 					onclick={() => {
-						bannerDialogRef.open();
+						dialogRef.open();
 					}}>Learn more</PillButton
 				>
+				<Dialog bind:this={dialogRef} defaultOpen={shouldOpenDialog}
+					><EventDialogContent event={firstEvent} /></Dialog
+				>
 			</div>
-			<Dialog bind:this={bannerDialogRef} defaultOpen
-				>{@render eventDialogContent(firstEvent)}</Dialog
-			>
 		</div>
 	{/if}
 	<section class="hero">
@@ -153,22 +138,7 @@
 			<ul>
 				{#each events as event}
 					<li>
-						<img
-							src={event.attachments[0].fileId
-								? `https://drive.google.com/thumbnail?id=${event.attachments[0].fileId}&sz=w1000`
-								: connect}
-							alt={event.summary}
-						/>
-						<span class="date">
-							{new Date(event.start).toLocaleDateString(undefined, {
-								year: 'numeric',
-								month: 'long',
-								day: 'numeric'
-							})}
-						</span>
-						<span class="event-title">
-							{event.summary}
-						</span>
+						<EventCard {event} />
 					</li>
 				{/each}
 			</ul>
@@ -471,29 +441,6 @@
 			@media (min-width: 700px) {
 				gap: 3rem;
 				grid-template-columns: repeat(3, 1fr);
-			}
-
-			li {
-				display: flex;
-				flex-direction: column;
-				justify-content: center;
-				align-items: center;
-
-				.date {
-					text-transform: uppercase;
-					font-size: 0.8rem;
-					margin-top: 0.75rem;
-				}
-
-				.event-title {
-					font-weight: 600;
-				}
-			}
-
-			img {
-				width: 100%;
-				aspect-ratio: 8.5 / 11;
-				object-fit: cover;
 			}
 		}
 	}

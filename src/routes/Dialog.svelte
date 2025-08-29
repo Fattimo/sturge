@@ -144,8 +144,8 @@
 
 	/* Content container */
 	.dialog-content {
-		padding: 24px;
 		min-width: 300px;
 		position: relative;
+		max-height: 90vh;
 	}
 </style>
