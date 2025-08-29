@@ -1,8 +1,8 @@
 <script lang="ts">
 	import PhotoNode from './PhotoNode.svelte';
-	import grow from '$lib/images/grow.png?url';
-	import connect from '$lib/images/connect.png?url';
-	import worship from '$lib/images/worship.png?url';
+	import grow from '$lib/images/grow.png';
+	import connect from '$lib/images/connect.png';
+	import worship from '$lib/images/worship.png';
 	import PillButton from './PillButton.svelte';
 	import { processLink } from '$lib/utils';
 	import type { PageProps } from './$types';
