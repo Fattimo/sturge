@@ -6,7 +6,8 @@ const config = {
 	kit: {
 		adapter: adapter(),
 		paths: {
-			base: ''
+			base:
+				process.argv.includes('dev') || !process.env.REPO_NAME ? `` : `/${process.env.REPO_NAME}`
 		}
 	}
 };
