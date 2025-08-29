@@ -7,7 +7,8 @@
 
 	import '../app.css';
 	import FooterLogo from './FooterLogo.svelte';
-	import { EMAIL_ACCESS_KEY, processLink } from '$lib/utils';
+	import { processLink } from '$lib/utils';
+	import { EMAIL_ACCESS_KEY } from '../constants';
 
 	const { children }: LayoutProps = $props();
 </script>

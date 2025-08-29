@@ -4,50 +4,40 @@
 	import connect from '$lib/images/connect.png';
 	import worship from '$lib/images/worship.png';
 	import PillButton from './PillButton.svelte';
-	import { EMAIL_ACCESS_KEY, processLink, sanitizeHTML } from '$lib/utils';
+	import { processLink } from '$lib/utils';
 	import type { PageProps } from './$types';
 	import LogoOnly from './LogoOnly.svelte';
 	import ColorInheritLogo from './ColorInheritLogo.svelte';
 	import Dialog from './Dialog.svelte';
 	import EventCard from './EventCard.svelte';
 	import EventDialogContent from './EventDialogContent.svelte';
-
-	const ALL_CALENDAR_LINK =
-		'https://calendar.google.com/calendar/u/0?cid=ODg0ZjAzODgzMjJhNGRlNzg3NDllNTZjNzNkYmNjMjRmZGM4MWE0Yzg3NTVjOTk5NTMyNzUwZjUwYmQ1YzVkMEBncm91cC5jYWxlbmRhci5nb29nbGUuY29t';
-	const ENGLISH_ZOOM_LINK = 'https://us06web.zoom.us/j/82465688368';
-	const GOOGLE_MAPS_LINK = 'https://maps.app.goo.gl/ttgJf9wqB37656627';
-	const YOUTUBE_LINK = 'https://www.youtube.com/@sturgechurch';
+	import { browser } from '$app/environment';
+	import {
+		ENGLISH_ZOOM_LINK,
+		ALL_CALENDAR_LINK,
+		GOOGLE_MAPS_LINK,
+		YOUTUBE_LINK,
+		EMAIL_ACCESS_KEY
+	} from '../constants';
 
 	const { data }: PageProps = $props();
 	const { events, firstVideo } = data;
 	const firstEvent = events[0];
 
 	let dialogRef: Dialog;
-	let shouldOpenDialog = $state(false);
 
-	// Check if we should show the dialog for this event
-	$effect(() => {
-		if (firstEvent) {
-			// Create a unique identifier for the event (using summary and start date)
-			const eventId = `${firstEvent.summary}-${firstEvent.start}`;
+	const eventId = `${firstEvent.summary}-${firstEvent.start}`;
+	let shouldOpenDialog = false;
+	if (browser) {
+		const lastPoppedEvent = localStorage.getItem('lastPoppedEvent');
 
-			try {
-				const lastPoppedEvent = localStorage.getItem('lastPoppedEvent');
-
-				// Only show dialog if this is a different event than the last one shown
-				if (lastPoppedEvent !== eventId) {
-					shouldOpenDialog = true;
-					// Store this event as the last popped event
-					localStorage.setItem('lastPoppedEvent', eventId);
-				}
-			} catch (e) {
-				// Fallback if localStorage is not available
-				console.warn('localStorage not available:', e);
-				// You could use a different storage mechanism here or just default to showing
-				shouldOpenDialog = false;
-			}
+		shouldOpenDialog = lastPoppedEvent !== eventId;
+		// Only show dialog if this is a different event than the last one shown
+		if (shouldOpenDialog) {
+			// Store this event as the last popped event
+			localStorage.setItem('lastPoppedEvent', eventId);
 		}
-	});
+	}
 </script>
 
 <svelte:head>

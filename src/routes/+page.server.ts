@@ -1,11 +1,8 @@
 // src/routes/events/+page.server.js
 import { GOOGLE_API_KEY } from '$env/static/private';
+import { FEATURED_CALENDAR_ID, STURGE_CHANNEL_ID } from '../constants';
 
-const PUBLIC_CALENDAR_ID =
-	'884f0388322a4de78749e56c73dbcc24fdc81a4c8755c999532750f50bd5c5d0@group.calendar.google.com';
-const STURGE_CHANNEL_ID = 'UCAAKEN_t0O0DA2OToKlpljg';
-
-type GcalEvent = {
+export type GcalEvent = {
 	summary: string;
 	start: string;
 	end: string;
@@ -20,7 +17,7 @@ export async function load() {
 	try {
 		//gcal
 		const gcalResponse = await fetch(
-			`https://www.googleapis.com/calendar/v3/calendars/${PUBLIC_CALENDAR_ID}/events?` +
+			`https://www.googleapis.com/calendar/v3/calendars/${FEATURED_CALENDAR_ID}/events?` +
 				new URLSearchParams({
 					key: GOOGLE_API_KEY,
 					timeMin: new Date().toISOString(),

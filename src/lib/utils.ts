@@ -29,8 +29,6 @@ export const processLink = (
 	return relative;
 };
 
-export const EMAIL_ACCESS_KEY = 'b7687713-373a-47bc-aead-650d3987eb01';
-
 type AllowedTags =
 	| 'p'
 	| 'div'
