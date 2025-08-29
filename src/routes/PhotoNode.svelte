@@ -4,19 +4,19 @@
 	let {
 		title,
 		description,
-		imgSrc,
+		img,
 		imgSide = 'left'
 	}: {
 		title: string;
 		description: Snippet;
-		imgSrc: string;
+		img: Snippet;
 		imgSide?: 'left' | 'right';
 	} = $props();
 </script>
 
 <section class={`photo-node  ${imgSide}`}>
 	{#snippet image()}
-		<div class="img-wrapper"><img src={imgSrc} alt={`image of ${title}`} /></div>
+		<div class="img-wrapper">{@render img()}</div>
 	{/snippet}
 	{#if imgSide === 'left'}
 		{@render image()}
@@ -94,10 +94,6 @@
 			@media (min-width: 700px) {
 				font-size: 1rem;
 			}
-		}
-
-		img {
-			width: 100%;
 		}
 
 		h3 {

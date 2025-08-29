@@ -86,13 +86,16 @@
 	</section>
 	<div class="cream-background">
 		<section class="photo-nodes">
-			<PhotoNode title="connect with us" imgSrc={connect}>
+			<PhotoNode title="connect with us">
 				{#snippet description()}
 					<h4>ALL CHURCH EVENTS</h4>
 					Come fellowship with us and celebrate our faith, cultures, history, and food!
 				{/snippet}
+				{#snippet img()}
+					<img src={connect} alt={`image of connect with us`} />
+				{/snippet}
 			</PhotoNode>
-			<PhotoNode title="grow with us" imgSrc={grow} imgSide="right">
+			<PhotoNode title="grow with us" imgSide="right">
 				{#snippet description()}
 					<h4>MISSIONS + OUTREACH PROGRAMS</h4>
 					Join us we serve our local and global communities
@@ -100,8 +103,11 @@
 						<PillButton href={ALL_CALENDAR_LINK}>CALENDAR</PillButton>
 					</div>
 				{/snippet}
+				{#snippet img()}
+					<img src={grow} alt={`image of grow with us`} />
+				{/snippet}
 			</PhotoNode>
-			<PhotoNode title="worship with us" imgSrc={worship}>
+			<PhotoNode title="worship with us">
 				{#snippet description()}
 					JOIN US ON SUNDAYS AT <div class="service-blurb">
 						9∶00 AM Japanese Service<br />10∶45 AM English Service
@@ -110,6 +116,9 @@
 						<PillButton href={ENGLISH_ZOOM_LINK}>ENGLISH ZOOM</PillButton>
 						<PillButton href={GOOGLE_MAPS_LINK}>DIRECTIONS</PillButton>
 					</div>
+				{/snippet}
+				{#snippet img()}
+					<img src={worship} alt={`image of worship with us`} />
 				{/snippet}
 			</PhotoNode>
 		</section>
@@ -384,6 +393,10 @@
 
 		position: relative;
 		z-index: 1;
+
+		img {
+			width: 100%;
+		}
 	}
 
 	.missions-button {
