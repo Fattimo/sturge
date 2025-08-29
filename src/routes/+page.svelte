@@ -17,6 +17,7 @@
 		YOUTUBE_LINK,
 		EMAIL_ACCESS_KEY
 	} from '../constants';
+	import { base } from '$app/paths';
 
 	const { data }: PageProps = $props();
 	const { events, firstVideo } = data;
@@ -90,7 +91,7 @@
 					Come fellowship with us and celebrate our faith, cultures, history, and food!
 				{/snippet}
 				{#snippet img()}
-					<img src="/images/connect.png" alt={`image of connect with us`} />
+					<img src={`${base}/images/connect.png`} alt={`image of connect with us`} />
 				{/snippet}
 			</PhotoNode>
 			<PhotoNode title="grow with us" imgSide="right">
@@ -102,7 +103,7 @@
 					</div>
 				{/snippet}
 				{#snippet img()}
-					<img src="/images/grow.png" alt={`image of grow with us`} />
+					<img src={`${base}/images/grow.png`} alt={`image of grow with us`} />
 				{/snippet}
 			</PhotoNode>
 			<PhotoNode title="worship with us">
@@ -116,7 +117,7 @@
 					</div>
 				{/snippet}
 				{#snippet img()}
-					<img src="/images/worship.png" alt={`image of worship with us`} />
+					<img src={`${base}/images/worship.png`} alt={`image of worship with us`} />
 				{/snippet}
 			</PhotoNode>
 		</section>
