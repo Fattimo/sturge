@@ -1,8 +1,6 @@
 <script lang="ts">
 	import PhotoNode from './PhotoNode.svelte';
-	import grow from '$lib/images/grow.png';
-	import connect from '$lib/images/connect.png';
-	import worship from '$lib/images/worship.png';
+
 	import PillButton from './PillButton.svelte';
 	import { processLink } from '$lib/utils';
 	import type { PageProps } from './$types';
@@ -92,7 +90,7 @@
 					Come fellowship with us and celebrate our faith, cultures, history, and food!
 				{/snippet}
 				{#snippet img()}
-					<img src={connect} alt={`image of connect with us`} />
+					<img src="/images/connect.png" alt={`image of connect with us`} />
 				{/snippet}
 			</PhotoNode>
 			<PhotoNode title="grow with us" imgSide="right">
@@ -104,7 +102,7 @@
 					</div>
 				{/snippet}
 				{#snippet img()}
-					<img src={grow} alt={`image of grow with us`} />
+					<img src="/images/grow.png" alt={`image of grow with us`} />
 				{/snippet}
 			</PhotoNode>
 			<PhotoNode title="worship with us">
@@ -118,7 +116,7 @@
 					</div>
 				{/snippet}
 				{#snippet img()}
-					<img src={worship} alt={`image of worship with us`} />
+					<img src="/images/worship.png" alt={`image of worship with us`} />
 				{/snippet}
 			</PhotoNode>
 		</section>
