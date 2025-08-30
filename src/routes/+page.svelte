@@ -25,9 +25,9 @@
 
 	let dialogRef: Dialog;
 
-	const eventId = `${firstEvent.summary}-${firstEvent.start}`;
+	const eventId = firstEvent ? `${firstEvent.summary}-${firstEvent.start}` : null;
 	let shouldOpenDialog = false;
-	if (browser) {
+	if (browser && eventId) {
 		const lastPoppedEvent = localStorage.getItem('lastPoppedEvent');
 
 		shouldOpenDialog = lastPoppedEvent !== eventId;
