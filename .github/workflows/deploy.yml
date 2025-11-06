@@ -35,53 +35,53 @@ jobs:
           path: 'build/'
 
   keepalive-job:
-  name: Keepalive Workflow
-  runs-on: ubuntu-latest
-  permissions:
-    contents: write
-  steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
+    name: Keepalive Workflow
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-    - name: Keep repository active
-      shell: bash
-      env:
-        COMMIT_USER_NAME: 'github-actions[bot]'
-        COMMIT_USER_EMAIL: '41898282+github-actions[bot]@users.noreply.github.com'
-        TIME_ELAPSED_THRESHOLD_IN_DAYS: '50' # Adjust as needed (GitHub disables after 60 days)
-        COMMIT_MESSAGE: 'chore: keep repository active [skip ci]'
-        TRACE: '0' # Set to '1' for debugging
-      run: |
-        set -o nounset
-        set -o errexit
-        set -o pipefail
-        if [ "${TRACE-0}" -eq 1 ]; then set -o xtrace; fi
+      - name: Keep repository active
+        shell: bash
+        env:
+          COMMIT_USER_NAME: 'github-actions[bot]'
+          COMMIT_USER_EMAIL: '41898282+github-actions[bot]@users.noreply.github.com'
+          TIME_ELAPSED_THRESHOLD_IN_DAYS: '50' # Adjust as needed (GitHub disables after 60 days)
+          COMMIT_MESSAGE: 'chore: keep repository active [skip ci]'
+          TRACE: '0' # Set to '1' for debugging
+        run: |
+          set -o nounset
+          set -o errexit
+          set -o pipefail
+          if [ "${TRACE-0}" -eq 1 ]; then set -o xtrace; fi
 
-        readonly COMMIT_USER_NAME="${COMMIT_USER_NAME}"
-        readonly COMMIT_USER_EMAIL="${COMMIT_USER_EMAIL}"
-        readonly TIME_ELAPSED_THRESHOLD_IN_DAYS="${TIME_ELAPSED_THRESHOLD_IN_DAYS}"
-        readonly COMMIT_MESSAGE="${COMMIT_MESSAGE}"
+          readonly COMMIT_USER_NAME="${COMMIT_USER_NAME}"
+          readonly COMMIT_USER_EMAIL="${COMMIT_USER_EMAIL}"
+          readonly TIME_ELAPSED_THRESHOLD_IN_DAYS="${TIME_ELAPSED_THRESHOLD_IN_DAYS}"
+          readonly COMMIT_MESSAGE="${COMMIT_MESSAGE}"
 
-        git --version
-        git config user.name "$COMMIT_USER_NAME"
-        git config user.email "$COMMIT_USER_EMAIL"
+          git --version
+          git config user.name "$COMMIT_USER_NAME"
+          git config user.email "$COMMIT_USER_EMAIL"
 
-        # Get the last commit date for the current branch
-        LAST_COMMIT_DATE=$(git log -1 --format="%ct")
-        CURRENT_DATE=$(date "+%s")
-        TIME_DIFFERENCE=$((CURRENT_DATE - LAST_COMMIT_DATE))
-        DAYS_AGO=$((TIME_DIFFERENCE / (60 * 60 * 24)))
+          # Get the last commit date for the current branch
+          LAST_COMMIT_DATE=$(git log -1 --format="%ct")
+          CURRENT_DATE=$(date "+%s")
+          TIME_DIFFERENCE=$((CURRENT_DATE - LAST_COMMIT_DATE))
+          DAYS_AGO=$((TIME_DIFFERENCE / (60 * 60 * 24)))
 
-        echo "Last commit is '$DAYS_AGO' days ago"
+          echo "Last commit is '$DAYS_AGO' days ago"
 
-        if [ "$DAYS_AGO" -gt "$TIME_ELAPSED_THRESHOLD_IN_DAYS" ]; then
-          echo "$DAYS_AGO > $TIME_ELAPSED_THRESHOLD_IN_DAYS -> add empty commit"
-          git commit --allow-empty -m "$COMMIT_MESSAGE"
-          git push
-          echo "done"
-        else
-          echo "$DAYS_AGO <= $TIME_ELAPSED_THRESHOLD_IN_DAYS -> nothing to do"
-        fi
+          if [ "$DAYS_AGO" -gt "$TIME_ELAPSED_THRESHOLD_IN_DAYS" ]; then
+            echo "$DAYS_AGO > $TIME_ELAPSED_THRESHOLD_IN_DAYS -> add empty commit"
+            git commit --allow-empty -m "$COMMIT_MESSAGE"
+            git push
+            echo "done"
+          else
+            echo "$DAYS_AGO <= $TIME_ELAPSED_THRESHOLD_IN_DAYS -> nothing to do"
+          fi
 
   deploy:
     needs: build_site
