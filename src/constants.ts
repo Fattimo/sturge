@@ -13,7 +13,6 @@ export const ZOOM_LINK =
 export const PRAYER_LIST_LINK =
 	'https://docs.google.com/document/d/1MsceafilrpLkJPyXO4Nlit0FR99zLKPiNNpJvf3fsy4/edit?tab=t.0';
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const DEV_EMAIL_KEY = 'b7687713-373a-47bc-aead-650d3987eb01';
 const STURGE_EMAIL_KEY = '8975add1-d113-4d78-b23a-d0134e8a4af5';
-export const EMAIL_ACCESS_KEY = STURGE_EMAIL_KEY;
+export const EMAIL_ACCESS_KEY = dev ? DEV_EMAIL_KEY : STURGE_EMAIL_KEY;
