@@ -1,4 +1,4 @@
-import { dev } from "$app/environment";
+import { dev } from '$app/environment';
 
 export const ENGLISH_ZOOM_LINK = 'https://us06web.zoom.us/j/82465688368';
 export const GOOGLE_MAPS_LINK = 'https://maps.app.goo.gl/ttgJf9wqB37656627';
@@ -14,6 +14,7 @@ export const ZOOM_LINK =
 	'https://us06web.zoom.us/j/89550742275?pwd=WU1QcUZJQldaZkxEZ2U3SzloN0c5Zz09';
 export const PRAYER_LIST_LINK =
 	'https://docs.google.com/document/d/1MsceafilrpLkJPyXO4Nlit0FR99zLKPiNNpJvf3fsy4/edit?tab=t.0';
+export const GIVE_LINK = 'https://secure.myvanco.com/L-ZWJ1';
 
 const DEV_EMAIL_KEY = 'b7687713-373a-47bc-aead-650d3987eb01';
 const STURGE_EMAIL_KEY = '8975add1-d113-4d78-b23a-d0134e8a4af5';

@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import { processLink } from '$lib/utils';
+	import { GIVE_LINK } from '../constants';
 	import HeaderLogo from './HeaderLogo.svelte';
 	import PillButton from './PillButton.svelte';
 
@@ -27,14 +28,18 @@
 					<a href={processLink('/counter')}>Contact Us</a>
 				</li>
 				<li>
-					<a href={processLink(page.url.pathname, {locale: 'en'})} data-sveltekit-reload>English</a>
+					<a href={processLink(page.url.pathname, { locale: 'en' })} data-sveltekit-reload
+						>English</a
+					>
 				</li>
 				<li>
-					<a href={processLink(page.url.pathname, {locale: 'jp'})} data-sveltekit-reload>Japanese</a>
+					<a href={processLink(page.url.pathname, { locale: 'jp' })} data-sveltekit-reload
+						>Japanese</a
+					>
 				</li>
 			{/if}
 			<li>
-				<PillButton href="https://secure.myvanco.com/L-ZWJ1">Give</PillButton>
+				<PillButton href={GIVE_LINK}>Give</PillButton>
 			</li>
 		</ul>
 	</nav>
