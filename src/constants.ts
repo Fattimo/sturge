@@ -1,3 +1,5 @@
+import { dev } from "$app/environment";
+
 export const ENGLISH_ZOOM_LINK = 'https://us06web.zoom.us/j/82465688368';
 export const GOOGLE_MAPS_LINK = 'https://maps.app.goo.gl/ttgJf9wqB37656627';
 export const YOUTUBE_LINK = 'https://www.youtube.com/@sturgechurch';
